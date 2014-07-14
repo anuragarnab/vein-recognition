@@ -11,6 +11,8 @@ function [] = linetrack( image, delta, y, x, fromy, fromx )
 % Recursive algorithm. For each pixel, look at 8 neighbouring pixels
 % Select the darkest one and continue in that path
 
+global out;
+
 darkest_x = 0;
 darkest_y = 0;
 difference = -1000000;
@@ -27,6 +29,11 @@ for j = 1: size(xchange)
        continue; 
     end
     
+    if ( out(y+ychange(j) , x+xchange(j) ) == 1)
+       % means that we have already set this pixel 
+       continue 
+    end
+      
     pixel = image (y + ychange(j), x + xchange(j));
     diff = double(image(y, x)) - double(pixel);
     

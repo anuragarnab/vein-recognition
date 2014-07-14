@@ -1,3 +1,5 @@
+global out;
+
 image = imread ('1.jpg');
 image = rgb2gray (image);
 
