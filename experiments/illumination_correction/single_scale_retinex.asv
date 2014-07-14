@@ -1,0 +1,5 @@
+image = imread ('1.jpg');
+
+% Reference to the paper, "Illumination Invariant Face Recognition by
+% Non-local smoothing
+

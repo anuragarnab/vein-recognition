@@ -1,0 +1,30 @@
+function [ out ] = local_threhold( image, window_size)
+%UNTITLED7 Summary of this function goes here
+%   Detailed explanation goes here
+    
+% Find mean in a window and use that as the threshold
+
+if (nargin < 2)
+   window_size = [13 13]; 
+end
+
+%get image dimensions
+[irows,icols]=size(image);
+
+%get template dimensions
+wrows = window(1);
+wcols = window(2);
+
+out = image;
+
+for row = 1:irows-wrows
+    for col = 1:icols-wcols
+        
+        window = image (row:row+wrows, col:col+wcols);
+        imagesc (window);
+        colormap ('gray');
+    end
+end
+
+end
+
