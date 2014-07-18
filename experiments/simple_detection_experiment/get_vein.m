@@ -42,8 +42,11 @@ projection = sum ( im2bw (im, threshold) );
 [start, fin] = continuous_block(projection);
 image = image (:,  start:fin);
 
-struct_element = strel ('rectangle', [5 5]);
-image = imopen (image, struct_element); % do morphological opening
+%struct_element = strel ('rectangle', [5 5]);
+%image = imopen (image, struct_element); % do morphological opening
+
+image = bwmorph (image, 'dilate'); % dilate the image prior to thinning
+image = bwmorph (image, 'thin', Inf); % thin the image since recall that vein thickness can change
 
 
 end
