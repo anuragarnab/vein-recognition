@@ -5,7 +5,7 @@ v22 = get_vein('p22.jpg');
 v31 = get_vein('p31.jpg');
 v32 = get_vein('p32.jpg');
 
-chosen = v32;
+chosen = v12;
 
 cross_corr_normalised (chosen, v11)
 cross_corr_normalised (chosen, v12)

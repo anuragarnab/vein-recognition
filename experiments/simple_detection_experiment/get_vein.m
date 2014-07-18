@@ -42,6 +42,9 @@ projection = sum ( im2bw (im, threshold) );
 [start, fin] = continuous_block(projection);
 image = image (:,  start:fin);
 
+struct_element = strel ('rectangle', [5 5]);
+image = imopen (image, struct_element); % do morphological opening
+
 
 end
 
