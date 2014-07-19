@@ -1,6 +1,7 @@
-filename = 'p12.jpg';
+filename = '04.jpg';
 
 vein = get_vein (filename);
+vein = bwmorph (vein, 'dilate');
 vein = bwmorph (vein, 'thin', Inf);
 vein = bwmorph (vein, 'fill');
 
