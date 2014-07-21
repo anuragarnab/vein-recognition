@@ -47,8 +47,10 @@ for row = 1 : length (x)
        
         vector2 = [ x(col) ; y(col) ];
         distance = distance_function ( vector1, vector2);
+        angle = angle_function (vector1, vector2);
         
         distances (counter) = distance;
+        angles (counter) = angle;
         counter = counter + 1;
     end
 end

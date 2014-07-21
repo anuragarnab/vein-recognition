@@ -1,4 +1,4 @@
-filenames = ['fv/1/01.jpg' ; 'fv/1/02.jpg' ; 'fv/2/01.jpg' ; 'fv/2/02.jpg' ; 'fv/3/01.jpg' ; 'fv/3/02.jpg' ; 'fv/4/01.jpg' ; 'fv/4/02.jpg' ; 'fv/4/03.jpg'];
+filenames = ['fv/1/01.jpg' ; 'fv/1/02.jpg' ; 'fv/2/01.jpg' ; 'fv/2/02.jpg' ; 'fv/3/01.jpg' ; 'fv/3/02.jpg' ; 'fv/4/01.jpg' ; 'fv/4/02.jpg'];
 
 veins = {}; % create a struct to store the vein data
 
@@ -13,14 +13,11 @@ for i = 1:size(filenames, 1)
    
    [distances angles] = distance_combinations (x, y);
    veins(i).distances = distances;
-   veins(i).angles = angles;
 end
 
-chosen = 1;
+chosen = 7;
 
 for j = 1:size(veins, 2)
 %for j = 2:2
-    %compare_intersection_points (veins(chosen).x, veins(chosen).y, veins(j).x, veins(j).y, 10)
-[score, matches] = compare_distances (veins(chosen).distances, veins(j).distances, veins(chosen).angles, veins(j).angles, 1, 0.05);
-[matches, score]
+    compare_intersection_points (veins(chosen).x, veins(chosen).y, veins(j).x, veins(j).y, 10)
 end
