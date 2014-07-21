@@ -1,0 +1,37 @@
+function [ accumulator ] = m( image, x, y, threshold, window_size, radius )
+%UNTITLED3 Summary of this function goes here
+%   Detailed explanation goes here
+
+accumulator = 0;
+[rows cols] = size (image);
+
+for window_row = -window_size : window_size
+    
+    py = y + window_row;   
+    if (py < 1 || py > rows)
+       continue; 
+    end
+    
+    for window_col = -window_size : window_size
+    
+        px = x + window_col; 
+        if (px < 1 || px > cols)
+           continue; 
+        end
+        
+        % so now we know that our px and py values are valid for the image
+        if (distance_function ([x y], [px py]) > radius )
+            continue;
+        end
+        
+        disp (
+        
+        if ( (image(y, x) - image(py, px)) > threshold )
+           accumulator = accumulator + 1; 
+        end
+    
+    end
+end
+        
+end
+
