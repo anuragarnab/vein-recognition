@@ -1,0 +1,38 @@
+function [ output_args ] = modified_hausdorf_distance( a, b )
+%UNTITLED5 Summary of this function goes here
+%   a and b can be complex or real
+%   MHD is basically the distance taken between the n closest points, where
+%   n is the length of the smaller vector
+
+if ( length (a) > length (b) )
+    n = length (a);
+else
+    n = length (b);
+end
+
+% The three loops
+
+for i = 1 : length (a)
+    
+   minLength = Inf;
+   minIndexA = 0;
+   minIndexB = 0;
+   
+   for k = 1 : length(a)
+        for j = 1 : length (b) 
+            dist = norm (a(i) - b(j) );
+            if (dist < minLength)
+                minIndexA = k;
+                minIndexB = j;
+            end
+        end
+   end
+   
+   distance = distance + norm (a(minIndexA), b(minIndexB) );
+   a(minIndexA) = Inf;
+   b(minIndexB) = Inf;
+end
+
+
+end
+
