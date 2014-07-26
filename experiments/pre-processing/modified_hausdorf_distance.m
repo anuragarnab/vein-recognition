@@ -1,8 +1,12 @@
-function [ mhd ] = modified_hausdorf_distance( a, b )
+function [ mhd ] = modified_hausdorf_distance( a, b, verbose )
 %UNTITLED5 Summary of this function goes here
 %   a and b can be complex or real
 %   MHD is basically the distance taken between the n closest points, where
 %   n is the length of the smaller vector
+
+if (nargin < 3)
+   verbose = 0; 
+end
 
 if ( length (a) > length (b) )
     n = length (b);
@@ -45,12 +49,16 @@ for i = 1 : length (a)
        break
    end
    
+   if (verbose)
+       fprintf ('Closest pair is [%i %i] and [%i %i] with distance %0.3f\n', a(minIndexA, 1), a(minIndexA, 2), b(minIndexB, 1), b(minIndexB, 2), norm(a(minIndexA, :) - b(minIndexB, :)) );
+   end
+   
    mhd = mhd + norm (a(minIndexA, :) - b(minIndexB, :) );
    a(minIndexA, :) = Inf;
    b(minIndexB, :) = Inf;
-   mhd = mhd / n;
 end
 
+mhd = mhd / n;
 
 end
 
