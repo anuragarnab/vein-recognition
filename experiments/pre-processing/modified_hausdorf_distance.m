@@ -32,7 +32,7 @@ mhd = 0;
 
 total = round(length(v1) * fraction);
 
-for i = 1 : length(a)
+for i = 1 : length(v1)
     
    minLength = Inf;
    minIndexA = 0;
@@ -72,7 +72,7 @@ for i = 1 : length(a)
    end
 end
 
-mhd = mhd / n;
+mhd = mhd / total;
 
 end
 

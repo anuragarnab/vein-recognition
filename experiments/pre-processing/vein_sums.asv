@@ -1,0 +1,6 @@
+for j = 1 : length (veins_c)
+   sum (sum (veins_c(j).skeleton) ) 
+end
+
+figure
+scatter ( sum (sum (veins_c(j).skeleton) ), length(veins_c(1).x) 'red' );

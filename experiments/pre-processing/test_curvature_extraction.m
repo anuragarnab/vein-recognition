@@ -1,4 +1,4 @@
-filenames = ['images/11.bmp' ; 'images/12.bmp' ; 'images/13.bmp' ; 'images/21.bmp' ; 'images/22.bmp' ; 'images/31.bmp' ; 'images/32.bmp' ; 'images/41.bmp' ; 'images/42.bmp'];
+filenames = ['images/11.bmp' ; 'images/12.bmp' ; 'images/13.bmp' ; 'images/21.bmp' ; 'images/22.bmp' ; 'images/31.bmp' ; 'images/32.bmp' ; 'images/41.bmp' ; 'images/42.bmp'; 'images/51.bmp'; 'images/52.bmp' ; 'images/61.bmp' ; 'images/62.bmp'];
 
 veins_c = {}; % create a struct to store the vein data
 region = ones (81, 320); % for compatibility with the code I'm using (will change this)

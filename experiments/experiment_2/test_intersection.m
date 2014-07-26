@@ -16,7 +16,7 @@ for i = 1:size(filenames, 1)
    veins(i).angles = angles;
 end
 
-chosen = 1;
+chosen = 3;
 
 for j = 1:size(veins, 2)
 %for j = 2:2

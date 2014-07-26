@@ -6,7 +6,7 @@ for i = 1:size(filenames, 1)
    veins(i).vein = get_vein(filenames(i, :)); 
 end
 
-chosen = 7;
+chosen = 3;
 
 for j = 1:size(veins, 2)
     cross_corr_normalised (veins(chosen).vein, veins(j).vein)

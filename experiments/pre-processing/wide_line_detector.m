@@ -19,8 +19,8 @@ if nargin < 2
 end
 
 
-for row = 1:height
-    for col = 1:width
+for row = window_size:height-window_size
+    for col = window_size:width-window_size
         % Iterating over every pixel
     
         m_val = m (f, row, col, t, r);

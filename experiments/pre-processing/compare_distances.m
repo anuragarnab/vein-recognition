@@ -44,7 +44,10 @@ for i = 1:size (v1, 1)
 end
 
 score = matches / size(v1, 1);
+% Should account for size of both images being tested. This is unfair when
+% comparing against another image with a lot of branch points.
 
+%score = matches / (size (v1, 1) * size(v2, 2) );
 
 end
 
