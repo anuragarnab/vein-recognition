@@ -1,5 +1,6 @@
 clc
-chosen = 9;
+chosen = 1;
+hd_fraction = 0.8;
 
 %for j = 1:length (veins_c)
 %    [score, matches] = compare_distances (veins_c(chosen).distances, veins_c(j).distances, veins_c(chosen).angles, veins_c(j).angles, 1, 0.05);
@@ -14,6 +15,6 @@ for j = 1:length (veins_c)
     vx = veins_c(j).x - mean (veins_c(j).x);
     vy = veins_c(j).y - mean (veins_c(j).y);
     
-    modified_hausdorf_distance ([cx, cy], [vx, vy])
-    %modified_hausdorf_distance ([veins_c(chosen).x veins_c(chosen).y], [veins_c(j).x veins_c(j).y])
+    %modified_hausdorf_distance ([cx, cy], [vx, vy], hd_fraction)
+    modified_hausdorf_distance ([veins_c(chosen).x veins_c(chosen).y], [veins_c(j).x veins_c(j).y], hd_fraction)
 end
