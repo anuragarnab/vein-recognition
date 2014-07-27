@@ -35,6 +35,10 @@ end
 %end
 
 total = round ( n * fraction);
+if (fraction == 1)
+   total = n-1; 
+end
+
 %[rows cols] = size(distance_matrix);
 %distance_matrix = reshape (distance_matrix, rows * cols, 1);
 
