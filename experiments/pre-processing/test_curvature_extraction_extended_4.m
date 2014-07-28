@@ -12,7 +12,7 @@ for i = 1:100
     %left_hand_index_2 = 2 +36k
     
     k = i - 1;
-    for j = 1:5 
+    for j = 1:6 
         
        image = get_roi ( files(6 + j + 36*k).name );        
        veins(counter).vein = get_vein_curvature (image) ; 
@@ -35,7 +35,7 @@ for i = 1:100
     
     % Now load one cross-validation image
         
-       index = floor (counter / 5); 
+       index = floor (counter / 6); 
        
        image = get_roi ( files(6 + 6 + 36*k).name );        
        veins_cv(index).vein = get_vein_curvature (image) ; 
