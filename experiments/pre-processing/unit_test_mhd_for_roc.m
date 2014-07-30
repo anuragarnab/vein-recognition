@@ -4,14 +4,14 @@
 
 thresholds = [1 2 4 5 5.2 5.4 5.6 5.8 6 6.2 6.4 6.6 6.8 7 8];
 
-correct_record = zeros (length(thresholds));
-correct_neg_record = zeros (length(thresholds));
-false_acceptance_record = zeros (length(thresholds));
-outlier_far_record = zeros (length(thresholds));
-false_rejection_record = zeros (length(thresholds));
-outlier_frr_record = zeros (length(thresholds));
+%correct_record = zeros (length(thresholds));
+%correct_neg_record = zeros (length(thresholds));
+%false_acceptance_record = zeros (length(thresholds));
+%outlier_far_record = zeros (length(thresholds));
+%false_rejection_record = zeros (length(thresholds));
+%outlier_frr_record = zeros (length(thresholds));
 
-for k = 1:length(thresholds)
+for k = 4:length(thresholds)
 
     %only_test_imposters = 1;
     
