@@ -1,0 +1,13 @@
+% creates the correct/incorrect distribution
+
+for i = 1:length(veins)
+    
+            [start, finish] = get_limits(i, 6);
+
+    for j = 1:length(veins)
+
+        % Find the best two distances for positive matches
+
+
+    end
+end

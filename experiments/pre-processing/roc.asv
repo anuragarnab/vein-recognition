@@ -1,0 +1,18 @@
+% Calcualtes the ROC curve I guess
+
+% False rejection rate
+frr = false_rejection_record(:,1) ./ length(veins);
+frr_adjusted = (false_rejection_record(:,1) - outlier_frr_record(:,1)) ./ (length(veins) - outlier_frr_record(:,1));
+
+% I screwed up here. My denominator should include the false acceptances
+% when I was testing against positive cases. 
+far = false_acceptance_record(:,1) ./ length(veins_unreg);
+far_adjusted = (false_acceptance_record(:,1) - outlier_far_record(:,1)) ./ (length(veins_unreg) - outlier_far_record);
+
+gar = (correct_record(:,1) + correct_neg_record(:,1) ) ./ ( length(veins) +  length(veins_unreg) );
+gar_adjusted = (correct_record(:,1) + correct_neg_record(:,1) - outlier_frr_record(:,1) - outlier_far_record(:,1) ) ./ ( length(veins) +  length(veins_unreg) - outlier_far_record(:,1) - outlier_frr_record(:,1) );
+
+figure 
+plot (frr, far, 'blue');
+hold on
+plot (frr_adjusted, far_
