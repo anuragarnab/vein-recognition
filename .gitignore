@@ -3,3 +3,12 @@ experiments/experiment_2/fv/
 *.jpg
 *.bmp
 *.png
+*.mat
+*.lot
+*.gz
+*.toc
+*.out
+*.aux
+*.lof
+*.log
+report/Thesis.pdf
