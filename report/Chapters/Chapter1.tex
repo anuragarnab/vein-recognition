@@ -1,10 +1,57 @@
 \chapter{Introduction}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at pulvinar nisi. Phasellus hendrerit, diam placerat interdum iaculis, mauris justo cursus risus, in viverra purus eros at ligula. Ut metus justo, consequat a tristique posuere, laoreet nec nibh. Etiam et scelerisque mauris. Phasellus vel massa magna. Ut non neque id tortor pharetra bibendum vitae sit amet nisi. Duis nec quam quam, sed euismod justo. Pellentesque eu tellus vitae ante tempus malesuada. Nunc accumsan, quam in congue consequat, lectus lectus dapibus erat, id aliquet urna neque at massa. Nulla facilisi. Morbi ullamcorper eleifend posuere. Donec libero leo, faucibus nec bibendum at, mattis et urna. Proin consectetur, nunc ut imperdiet lobortis, magna neque tincidunt lectus, id iaculis nisi justo id nibh. Pellentesque vel sem in erat vulputate faucibus molestie ut lorem.
+Personal identification is very important in the modern world. Biometrics, the statistical measurement of behavioural or physiological traits (CITE MIURA), is an effective way of dealing with this problem. Biometrics use unique characteristics of a person to identify them. Using biometric authentication technologies, users simply do not have to remember any passwords, since a unique part of the individual is the password. This also means that biometrics are much harder to fake as well.
+\par
+Common biometric technologies are fingerprint recognition and iris recognition. However, in this thesis, we explore vein recognition. Vein recognition identifies people according to the unique patterns of their veins. Vein patterns in various different parts of our body are unique \cite{jain2007handbook} - but it is most convenient to use the veins of our fingers or hands for recognition. In this thesis, we will work with finger-veins.
+\par
+The vein patterns in an individual's hand can be obtained by imaging it with Near-Infrared Radiation (NIR). The deoxygenated blood in the individuals veins will absorb the light whilst other parts of the hand will not. This results in an image where the dark regions correspond to veins. 
+\par
+Some benefits of finger-vein recognition go here.
+\begin{itemize}
+\item Can't forge it (under surface of skin)
+\item Dead person's hand will not work (no blood)
+\item Contact-less identification means more hygiene in public areas. 
+\end{itemize}
+\par
+What databases I used
+\par
+Some obvious limitations (ie non-uniform illumination)
+\par
+Goal of this thesis is to show the finger-vein recognition can be used to reliably identify individuals. Furthermore, to show that a cost-effective and quick solution can also be developed. 
 
-\section{A Section}
+\section{Literature Review}
 
-Quisque tristique urna in lorem laoreet at laoreet quam congue. Donec dolor turpis, blandit non imperdiet aliquet, blandit et felis. In lorem nisi, pretium sit amet vestibulum sed, tempus et sem. Proin non ante turpis. Nulla imperdiet fringilla convallis. Vivamus vel bibendum nisl. Pellentesque justo lectus, molestie vel luctus sed, lobortis in libero. Nulla facilisi. Aliquam erat volutpat. Suspendisse vitae nunc nunc. Sed aliquet est suscipit sapien rhoncus non adipiscing nibh consequat. Aliquam metus urna, faucibus eu vulputate non, luctus eu justo.
+\begin{itemize}
+\item Biometrics
+	\begin{itemize}
+		\item Something on Biometrics
+		\item FAR, FRR, GAR and EER
+		\item ROC Curves
+	\end{itemize}
+\item Image Processing
+	\begin{itemize}
+		\item Contrast and histogram equalisation
+		\item Convolution using templates
+		\item Morphology
+		\begin{itemize}
+			\item Intro
+			\item Hit and Miss
+			\item Erosion and Dilation
+			\item Thinning and skeletonisation
+		\end{itemize}
+		\item Feature extraction
+		\begin{itemize}
+			\item What is a feature? - Can talk about what the dude said on MATLAB Central
+			\item Histogram of gradients
+			\item SURF	
+		\end{itemize}
+	\end{itemize}
+\item Classifiers
+	\begin{itemize}
+			\item Nearest Neighbour
+			\item Neural Network
+	\end{itemize}
+\end{itemize}
 
 \subsection{A Subsection}
 
