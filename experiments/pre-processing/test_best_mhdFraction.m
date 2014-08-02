@@ -20,7 +20,7 @@ for i = mhd_fractions;
 
     end
     
-    correct_positves = [correct_positives ; correct];
+    correct_positives = [correct_positives ; correct];
 
 end
 
