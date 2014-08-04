@@ -12,3 +12,7 @@ experiments/experiment_2/fv/
 *.lof
 *.log
 report/Thesis.pdf
+*.ps
+*.dvi
+*.blg
+*.bbl

@@ -9,7 +9,7 @@
 % with positive_distances_2 (distance to best 2 neighbours)
 %%
 
-[correct_x correct_y] = generate_pdf (positive_distances_1, 12);
+[correct_x, correct_y] = generate_pdf (positive_distances_1, 25);
 % The issue is that the graph does not end on 0 on either side. So we
 % enforce this manualy
 epsilon = 0.0001;
@@ -23,7 +23,7 @@ correct_y = [0 ; correct_y ; 0];
 figure
 plot (correct_x, correct_y, 'blue');
 
-[imposter_x imposter_y] = generate_pdf (negative_distances, 100);
+[imposter_x, imposter_y] = generate_pdf (negative_distances, 300);
 
 hold on
 plot (imposter_x, imposter_y, 'red');

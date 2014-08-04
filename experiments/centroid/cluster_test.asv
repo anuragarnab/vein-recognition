@@ -1,0 +1,16 @@
+num_clusters = 8;
+clusters = [];
+choices = [];
+
+for i = 1:6:97
+    clusters(ceil(i/6)).cluster = get_cluster(num_clusters, i, veins);
+end
+
+for i = 1:102
+   scores = zeros(length(clusters),1);
+   for j = 1:length(clusters)
+      scores(j) = get_score(clusters(j).cluster, [veins(i).x veins(i).y]);
+   end
+   [val, idx] = min (scores);
+   choices = [choices idx];
+end

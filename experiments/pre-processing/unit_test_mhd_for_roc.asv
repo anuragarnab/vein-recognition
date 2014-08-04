@@ -2,16 +2,16 @@
 %outlier_count = 0; % I am going to count errors on images 4, 5 and 6 after the 40th hand as an outlier
 %threshold = 6;
 
-thresholds = [1 2 4 5 5.2 5.4 5.6 5.8 6 6.2 6.4 6.6 6.8 7 8];
+thresholds = [1 2 4 5 5.2 5.4 5.6 5.8 6 6.2 6.4 6.6 6.8 7 8 8.5 9 10];
 
-correct_record = [];
-correct_neg_record = [];
-false_acceptance_record = [];
-outlier_far_record = [];
-false_rejection_record = [];
-outlier_frr_record = [];
+correct_record = zeros (length(thresholds));
+correct_neg_record = zeros (length(thresholds));
+false_acceptance_record = zeros (length(thresholds));
+outlier_far_record = zeros (length(thresholds));
+false_rejection_record = zeros (length(thresholds));
+outlier_frr_record = zeros (length(thresholds));
 
-for k = 1:length(thresholds)
+for k = 4:length(thresholds)
 
     %only_test_imposters = 1;
     
@@ -68,11 +68,12 @@ for k = 1:length(thresholds)
         end
 
     end
-
-    correct_record = [correct_record ; correct];
-    correct_neg_record = [correct_neg_record ; correct_neg_record];
-    false_acceptance_record = [false_acceptance_record ; false_acceptance];
-    outlier_far_record = [outlier_far_record ; outlier_far];
-    false_rejection_record = [false_rejection_record ; false_rejection];
-    outlier_frr_record = [outlier_frr_record ; outlier_frr];
+    
+    fprintf ('Completed for threshold %0.2f\n', threshold);
+    correct_record(k) = correct;
+    correct_neg_record(k) = correct_neg;
+    false_acceptance_record(k) = false_acceptance;
+    outlier_far_record(k) = outlier_far;
+    false_rejection_record(k) = false_rejection;
+    outlier_frr_record(k) = outlier_frr;
 end

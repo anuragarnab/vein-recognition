@@ -6,6 +6,7 @@ threshold_test = 100000; % Not checking for threshold here. Just large enough so
 
 for i = mhd_fractions;
     
+    fprintf ('Testing fraction = %0.3f', i);
     correct = 0;
     
     for j = 1:length(veins)
@@ -21,7 +22,7 @@ for i = mhd_fractions;
     end
     
     correct_positives = [correct_positives ; correct];
-
+    
 end
 
 correct_positives

@@ -5,6 +5,11 @@ negative_distances = [];
 
 for i = 1:length(veins)
     
+    %discard the outliers
+    if ( i>240 && ( mod(i,6) == 0) )
+       continue 
+    end
+    
     [start, finish] = get_limits(i, 6);
     temp_distances = []; % Stores the correct ones
 

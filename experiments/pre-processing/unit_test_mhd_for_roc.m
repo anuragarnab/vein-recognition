@@ -2,16 +2,20 @@
 %outlier_count = 0; % I am going to count errors on images 4, 5 and 6 after the 40th hand as an outlier
 %threshold = 6;
 
-thresholds = [1 2 4 5 5.2 5.4 5.6 5.8 6 6.2 6.4 6.6 6.8 7 8];
+load veins
+load veins_unreg
 
-%correct_record = zeros (length(thresholds));
-%correct_neg_record = zeros (length(thresholds));
-%false_acceptance_record = zeros (length(thresholds));
-%outlier_far_record = zeros (length(thresholds));
-%false_rejection_record = zeros (length(thresholds));
-%outlier_frr_record = zeros (length(thresholds));
+thresholds = [1 2 4 5 5.2 5.4 5.6 5.8 6 6.2 6.4 6.6 6.8 7 8 8.5 9 10];
+mhd_fraction = 0.7;
 
-for k = 4:length(thresholds)
+correct_record = zeros (length(thresholds),1);
+correct_neg_record = zeros (length(thresholds),1);
+false_acceptance_record = zeros (length(thresholds),1);
+outlier_far_record = zeros (length(thresholds),1);
+false_rejection_record = zeros (length(thresholds),1);
+outlier_frr_record = zeros (length(thresholds),1);
+
+for k = 1:length(thresholds)
 
     %only_test_imposters = 1;
     
@@ -27,8 +31,8 @@ for k = 4:length(thresholds)
     
     for j = 1:length(veins)
 
-       output_id = identify (j, 0.8, veins, threshold);
-       [start finish] = get_limits (j, 6);
+       output_id = identify (j, mhd_fraction, veins, threshold);
+       [start, finish] = get_limits (j, 6);
        index = mod (j, 6);
 
 
@@ -77,3 +81,5 @@ for k = 4:length(thresholds)
     false_rejection_record(k) = false_rejection;
     outlier_frr_record(k) = outlier_frr;
 end
+
+save rocData correct_record correct_neg_record false_acceptance_record outlier_far_record false_rejection_record outlier_frr_record

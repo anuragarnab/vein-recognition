@@ -12,6 +12,10 @@ far_adjusted = (false_acceptance_record(:,1) - outlier_far_record(:,1)) ./ (leng
 gar = ( correct_record(:,1) + correct_neg_record(:,1) ) ./ ( length(veins) +  length(veins_unreg) );
 gar_adjusted = (correct_record(:,1) + correct_neg_record(:,1) ) ./ ( length(veins) +  length(veins_unreg) - outlier_far_record(:,1) - outlier_frr_record(:,1) );
 
+positive_detection = correct_record(:,1) ./ length(veins);
+positive_detection_adjusted = correct_record(:,1) ./ (length(veins) - outlier_far_record(:,1) - outlier_frr_record(:,1));
+negative_detection = correct_neg_record(:,1) ./ length(veins);
+
 figure 
 plot (frr.*100, far.*100, 'blue');
 hold on
@@ -31,5 +35,14 @@ plot (thresholds, gar, 'blue');
 hold on 
 plot (thresholds, gar_adjusted, 'red');
 legend ('General acceptance rate', 'Adjusted general acceptance rate', 'Location', 'SouthEast');
+xlabel('Threshold');
+ylabel('Accuracy');
+
+figure
+plot (thresholds, positive_detection, 'blue');
+hold on
+plot (thresholds, positive_detection_adjusted, 'green');
+plot (thresholds, negative_detection, 'red');
+legend ('Correct positives detected', 'Correct positives adjusted with outliers', 'Correct negatives detected', 'Location', 'SouthEast');
 xlabel('Threshold');
 ylabel('Accuracy');
