@@ -1,4 +1,4 @@
-number_of_clusters = 8;
+number_of_clusters = 150;
 cluster = [];
 min_sumD = Inf;
 
@@ -26,7 +26,7 @@ end
 %end
 
 %[~, cluster] = kmeans(training_data, number_of_clusters, 'replicates', 100);
-[~, cluster] = kmeans(training_data, number_of_clusters, 'start', starting_point);
+[~, cluster] = kmeans(training_data, number_of_clusters, 'start', starting_point, 'emptyaction', 'drop');
 
 for i = [training, 8, 11, 13, 14, 15, 16, 26, 39];
    %score = 0;

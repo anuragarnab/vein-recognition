@@ -1,13 +1,15 @@
 %num_clusters = 8;
 
 block_size = 50;
-correct_record = cell(1,2);
+number_testing = 600;
+
+correct_record = cell(1, ceil(number_testing/block_size) ); % The "ceil" part has not been tested. So far assuming that numbers divide exactly. 
 for q = 1:size(correct_record,2)
    correct_record{1,q} = 0; 
 end
 
 % try our different numbers of clusters
-for num_clusters = 1:1:20
+for num_clusters = 2:1:20
 
 clusters = [];
 choices = [];
@@ -19,7 +21,7 @@ choices = [];
 
     total_correct = 0; % Total correct for that number of clusters
 
-        for block_start = 1:block_size:100
+        for block_start = 451:block_size:number_testing
            
            correct = 0; % Total correct for a certain block
             
