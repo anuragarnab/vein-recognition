@@ -29,7 +29,8 @@ end
 
 %[~, cluster] = kmeans(training_data, number_of_clusters, 'replicates', 100);
 opts = statset('MaxIter',200); %100 was not enough for one of the tests I did (think with 17 clusters)
-[~, cluster] = kmeans(training_data, number_of_clusters, 'start', starting_point, 'options', opts);
+%[~, cluster] = kmeans(training_data, number_of_clusters, 'start', starting_point, 'options', opts);
+[~, cluster] = kmeans(training_data, number_of_clusters, 'start', starting_point, 'options', opts, 'emptyaction', 'singleton');
 
 end
 
