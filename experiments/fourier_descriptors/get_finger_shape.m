@@ -1,8 +1,12 @@
-function [ finger ] = get_finger_shape( image, mask_width, mask_height )
+function [ finger ] = get_finger_shape( image, mask_width, mask_height, verbose )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
-    thresh = 20; % For detecting edges
+    if (nargin < 4)
+       verbose = 0; 
+    end
+
+    thresh = 10; % For detecting edges
     k = 20; % Need k for the "find" function
     
     left_fudge = 0;
@@ -10,9 +14,11 @@ function [ finger ] = get_finger_shape( image, mask_width, mask_height )
     
     image = rgb2gray(image);
     
-    figure
-    subplot (3,1,1); imshow(image);
-    
+    if (verbose)
+        figure
+        subplot (3,1,1); imshow(image);
+    end
+        
     if (nargin < 2)
         % These are values which Bram Ton used and which I found to work as
         % well on the first person (and hopefully all people)
@@ -22,7 +28,9 @@ function [ finger ] = get_finger_shape( image, mask_width, mask_height )
     
     [finger, ~] = lee_region ( im2double(image) , mask_height, mask_width);
     
-    subplot (3,1,2); imshow (finger);
+    if (verbose)
+        subplot (3,1,2); imshow (finger);
+    end
     
     % We need to get rid of the scanner bars at either end of the picture
     
@@ -42,14 +50,23 @@ function [ finger ] = get_finger_shape( image, mask_width, mask_height )
    
     left_edge = find ( abs(derivative(1:halfway)) > thresh, k, 'last' ) + left_fudge;
     right_edge = find ( abs(derivative(halfway:end)) > thresh, k, 'first' ) + halfway - right_fudge;
-
+    
+    if isempty(left_edge)
+       left_edge = 1;
+       fprintf ('Left edge was empty');
+    end
+    
+    if isempty(right_edge)
+       right_edge = size(image, 2); 
+       fprintf ('Right edge was empty');
+    end
     
     finger = finger (:, left_edge:right_edge);
     
-    subplot (3,1,3); imshow(finger);
-    
-    figure
-    plot (derivative)
-
+    if (verbose)
+        subplot (3,1,3); imshow(finger);
+        figure
+        plot (derivative)
+    end
 end
 

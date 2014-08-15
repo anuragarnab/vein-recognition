@@ -41,7 +41,7 @@ mask(mask_h/2 + 1:end,:) = 1;
 % Filter image using mask
 img_filt = imfilter(img, mask,'replicate'); 
 %
-figure; imshow(img_filt)
+%figure; imshow(img_filt)
 
 % Upper part of filtred image
 img_filt_up = img_filt(1:floor(img_h/2),:);
