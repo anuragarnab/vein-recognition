@@ -1,0 +1,19 @@
+samples_per_person = 6;
+fourier_candidates = 5; % Should play around with this
+hd_fraction = 0.7;
+threshold = 5.4; % Determined to be best for 0.7-fraction-mhd previously
+
+for i = 1:10
+   
+    candidates = get_candidates (i, veins, fourier_candidates, samples_per_person);
+    candidates = fill_candidates (candidates, samples_per_person);
+    
+    id = identify(i, hd_fraction, veins, threshold, 0, [], candidates);
+    
+    [start, fin] = get_limits(i, samples_per_person);
+    if (id >= start && id <= finish)
+        
+    else
+        fprintf('Incorrect for %d. Predicted %i');
+    end
+end
