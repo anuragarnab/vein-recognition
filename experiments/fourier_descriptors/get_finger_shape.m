@@ -61,6 +61,9 @@ function [ finger ] = get_finger_shape( image, mask_width, mask_height, verbose 
        fprintf ('Right edge was empty');
     end
     
+    left_edge = max(left_edge);
+    right_edge = min (right_edge);
+    
     finger = finger (:, left_edge:right_edge);
     
     if (verbose)

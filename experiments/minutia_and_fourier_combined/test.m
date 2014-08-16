@@ -23,6 +23,11 @@ for i = 1:num_test
             not_in_list(i) = 1;
         end
     end
+
+    if (mod(i,10) == 0)
+        fprintf('%i\n', i);
+    end
+
     
 end
 

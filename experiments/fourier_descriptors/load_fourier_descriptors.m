@@ -7,7 +7,7 @@ for i = 1:length(veins)
     
     fprintf('\n %d', i);
     veins(i).im = imread (veins(i).filename);
-    veins(i).finger = get_finger_shape (veins(i).im );
+    veins(i).finger = remove_edges (get_finger_shape (veins(i).im) );
     
     s = sum (veins(i).finger);
     s = s (1:3:end);
@@ -17,8 +17,12 @@ for i = 1:length(veins)
         p(j) = s(j) - s(j+1);
     end
     
-    f = fft (s, fourier_count);
-    f = abs(f) ./ abs(f(1));
+    f = fft (p, fourier_count);
+    f = abs(f);
+    
+    if (f(1) ~= 0)
+        f = abs(f) ./ abs(f(1));
+    end
     veins(i).fourier = f;
     
 end
