@@ -6,11 +6,11 @@ function [ hd ] = disthamming( x,y )
 % http://www.opensource.org/licenses/bsd-license.php
 
 hd = 0;
-if (class(x) == 'double')
+if (isa(x, 'double'))
    x = uint64(x); 
 end
 
-if (class(y) == 'double')
+if (isa(x, 'double'))
    y = uint64(y); 
 end
 

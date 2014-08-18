@@ -7,6 +7,7 @@ function [ lbp ] = get_lbp( filename, scale )
     
     % Could add some denoising code here
     lbp = local_binary_patterns(image);
+    lbp = uint8(lbp);
 
 end
 

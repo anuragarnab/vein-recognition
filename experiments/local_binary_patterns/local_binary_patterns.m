@@ -20,6 +20,8 @@ for row = 2:size(image,1)-1
     end
 end
 
+lbp = lbp(3:end-1,2:end-1); % Trim off the first and last columns since they are not considered. I actually trimmed the first two rows to have an even number of rows which is easier to subdivide
+
 
 end
 
