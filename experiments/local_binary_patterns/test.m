@@ -6,12 +6,17 @@ scores = zeros(num_test,1);
 imposter_distances = [];
 
 for i = 1:num_test
-   [id, min_score, false_distances] = get_identity(i, veins); 
    
-   [start, fin] = get_limits(id, 6);
+    if (i == 595)
+       disp('w'); 
+    end
+    
+   [id, min_score] = get_identity(veins(i), veins, i); 
+   
+   [start, fin] = get_limits(i, 6);
    if (id >= start && id <= fin)
        correct(i) = 1;
-       imposter_distances = [imposter_distances false_distances];
+       %imposter_distances = [imposter_distances false_distances];
    end
    scores(i) = min_score;
    

@@ -1,16 +1,16 @@
-function [ id ] = identify( index, veins, threshold, loo )
+function [ id ] = identify( vein, veins, threshold, loo, index )
 %UNTITLED12 Summary of this function goes here
 %   Detailed explanation goes here
 
-    if (nargin < 3)
-        % assumes we are doing LOO on the training data
-        loo = 1;
+    if (nargin < 4)
+        % assumes we are not doing LOO on the training data
+        loo = 0;
     end
     
     if (loo)
-        [id, score, ~] = get_identity(index, veins);
+        [id, score] = get_identity(vein, veins, index);
     else
-        [id, score, ~] = get_identity(index, veins_cv);
+        [id, score] = get_identity(vein, veins);
     end
     
     if (score > threshold)
