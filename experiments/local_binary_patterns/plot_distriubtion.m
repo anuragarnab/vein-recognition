@@ -1,6 +1,6 @@
 addpath ../common % This is where the generate_pdf function is now residing
 
-[correct_x, correct_y] = generate_pdf (scores, 12);
+[correct_x, correct_y] = generate_pdf (genuine, 12);
 % The issue is that the graph does not end on 0 on either side. So we
 % enforce this manualy
 epsilon = 0.0001;
@@ -14,7 +14,7 @@ correct_y = [0 ; correct_y ; 0];
 figure
 plot (correct_x, correct_y, 'blue');
 
-[imposter_x, imposter_y] = generate_pdf (imposter_distances(:), 200);
+[imposter_x, imposter_y] = generate_pdf (imposter(:), 200);
 
 hold on
 plot (imposter_x, imposter_y, 'red');

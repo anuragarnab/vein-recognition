@@ -1,5 +1,5 @@
-load veins
-load veins_unreg
+%load veins
+%load veins_unreg
 
 samples_per_person = 6;
 
@@ -8,8 +8,9 @@ correct_neg_record = [];
 far_record = [];
 frr_record = [];
 wrong_rec_record = [];
+threshes = [5:5:100];
 
-for threshold = [1 2:0.1:3 3.5 4 5]
+for threshold = threshes
 
     fprintf('Testing threshold = %0.3f\n', threshold);
     % These four effectively make up the quadrant
@@ -57,6 +58,6 @@ for threshold = [1 2:0.1:3 3.5 4 5]
     frr_record = [frr_record frr];
     wrong_rec_record = [wrong_rec_record wrong_recognised];
     
-    save lbp_test threshold correct_record correct_neg_record far_record frr_record wrong_rec_record
+    save lbp_test_histogram threshold correct_record correct_neg_record far_record frr_record wrong_rec_record
 
 end

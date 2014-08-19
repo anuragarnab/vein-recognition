@@ -30,7 +30,7 @@ if isempty(lutable)
     end
 end
 
-uniform_code = lutable(code+1);
+uniform_code = lutable( uint16(code)+1 );
 
 end
 

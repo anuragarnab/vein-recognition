@@ -9,7 +9,7 @@ function [ distances ] = get_distances( vein, veins, index_to_exclude )
     distances = zeros (length(veins), 1);
     
     for i = 1:length(veins)
-       distances(i) = get_score (vein.lbp, veins(i).lbp); 
+       distances(i) = get_score (vein.ulbp_hist, veins(i).ulbp_hist); 
        %if (mod(i,100) == 0)
        %   fprintf('%d\n', i); 
        %end

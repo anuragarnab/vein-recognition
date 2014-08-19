@@ -6,11 +6,7 @@ scores = zeros(num_test,1);
 imposter_distances = [];
 
 for i = 1:num_test
-   
-    if (i == 595)
-       disp('w'); 
-    end
-    
+       
    [id, min_score] = get_identity(veins(i), veins, i); 
    
    [start, fin] = get_limits(i, 6);
@@ -21,7 +17,7 @@ for i = 1:num_test
    scores(i) = min_score;
    
    fprintf('Testing %i\n', i);
-   save lbp_test correct scores i
+   save lbp_test_histogram correct scores i
 end
 
 

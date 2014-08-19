@@ -1,6 +1,8 @@
 % putting t as thresh
 %t = [100, 150, 200];
-thresh = [1 2:0.1:3 3.5 4 5];
+%thresh = [1 2:0.1:3 3.5 4 5];
+thresh = threshes;
+outliers = 13; % I got this figure from the original mhd tests. I took the intersection of what mhd could never identify and what lbp (histogram and standrd) could never identify
 
 figure
 plot (thresh, sum(correct_record) ./ length(veins) * 100, 'blue')
