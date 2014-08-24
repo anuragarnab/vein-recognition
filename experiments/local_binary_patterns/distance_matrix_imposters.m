@@ -9,7 +9,8 @@ for row = 1:length(imp_distances_ulbp_chi)
     for col = 1:length(imp_distances_ulbp_chi)
         
         %distances(row,col) = mhd_fast ( [veins(row).x veins(row).y], [veins(col).x veins(col).y], mhd_fraction);
-        imp_distances_ulbp_chi(row,col) = get_distances( veins(row), veins_unreg(col));
+        %imp_distances_ulbp_chi(row,col) = get_distances( veins(row), veins_unreg(col));
+        imp_distances_ulbp_chi(row,col) = distChiSquareFast( veins(row).ulbp_hist, veins_unreg(col).ulbp_hist);
     end
 end
 
