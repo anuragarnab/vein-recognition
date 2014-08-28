@@ -8,16 +8,19 @@ if (nargin < 3)
    fraction = 1; 
 end
 
-distance_matrix = zeros ( length (a), length (b) );
-mhd = 0;
+% distance_matrix = zeros ( length (a), length (b) );
+% mhd = 0;
+% 
+% for row = 1:length (a)
+%     for col = 1:length (b)
+%     
+%         distance_matrix (row, col) = norm ( a(row, :) - b(col, :) );
+%         
+%     end
+% end
 
-for row = 1:length (a)
-    for col = 1:length (b)
-    
-        distance_matrix (row, col) = norm ( a(row, :) - b(col, :) );
-        
-    end
-end
+mhd = 0;
+distance_matrix = sqrt(bsxfun(@minus,a(:,1),b(:,1).').^2); %+ bsxfun(@minus,a(:,2),b(:,2).').^2);
 
 % Now the distance matrix has been filled. Time to find the n smallest
 % entries
