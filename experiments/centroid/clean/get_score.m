@@ -8,3 +8,4 @@ function [ score ] = get_score( cluster, points )
 
 end
 
+

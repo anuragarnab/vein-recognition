@@ -12,4 +12,9 @@ for i=6*(id-1)+1:6*id
 end
 
 scatter ( cl(id).cluster(:,1), cl(id).cluster(:,2), 'red');
+
+cl(id).cluster = cl(id).cluster(~any(isnan(cl(id).cluster),2),:) 
+[vx, vy] = voronoi ( cl(id).cluster(:,1), cl(id).cluster(:,2) );
+hold on
+plot (vx, vy, 'green');
 count
