@@ -46,9 +46,9 @@ end
 [vals, cluster] = kmeans_open(training_data, number_of_clusters, 'start', starting_point, 'emptyaction', 'drop', 'Maxiter', 200);
 % Remove empty clusters now
 
-histogram = hist(vals, number_of_clusters);
-idx = find( histogram == 0 | histogram == 1);
-cluster(idx, :) = NaN;
+% histogram = hist(vals, number_of_clusters);
+% idx = find( histogram == 0 | histogram == 1);
+% cluster(idx, :) = NaN;
 
 end
 

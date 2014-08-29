@@ -5,6 +5,7 @@ function [ score ] = get_score( cluster, points )
     for i = 1:size(points,1)
        score = score + distance_to_cluster(cluster, [points(i, :)]); 
     end
+    score = score / length(points);
 
 end
 

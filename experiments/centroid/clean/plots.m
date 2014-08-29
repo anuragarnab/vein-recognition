@@ -16,5 +16,6 @@ ylabel ('False acceptance rate')
 xlabel ('False rejection rate');
 x = ones(100,1);
 x = cumsum(x);
+x = [0; x];
 hold on;
 plot(x,x,'green');
