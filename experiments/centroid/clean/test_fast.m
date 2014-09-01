@@ -6,13 +6,19 @@ threshold = 300;
 history = [];
 count = 1;
 
-for num_clusters = [10:10:120]
+for num_clusters = [120]
 
     thresh = [1:0.25:20];
     %thresh = [thresh 300:50:600];
 
-    clus = train_cluster(images_per_user, users, num_clusters, veins);
-    [distances_centroid, imp_distances_centroid] = distance_matrix( clus, veins, veins_unreg );
+%     clus1 = train_cluster(images_per_user, users, num_clusters, veins, [1, 2, 3, 4, 5]);
+%     clus2 = train_cluster(images_per_user, users, num_clusters, veins, [0, 2, 3, 4, 5]);
+%     clus3 = train_cluster(images_per_user, users, num_clusters, veins, [0, 1, 3, 4, 5]);
+%     clus4 = train_cluster(images_per_user, users, num_clusters, veins, [0, 1, 2, 4, 5]);
+%     clus5 = train_cluster(images_per_user, users, num_clusters, veins, [0, 1, 2, 3, 5]);
+%     clus6 = train_cluster(images_per_user, users, num_clusters, veins, [0, 1, 2, 3, 4]);
+
+    [distances_centroid, imp_distances_centroid] = distance_matrix( clus1, clus2, clus3, clus4, clus5, clus6, veins, veins_unreg );
     
     correct_record = [];
     correct_neg_record = [];
@@ -29,9 +35,10 @@ for num_clusters = [10:10:120]
         wrong_recognised = zeros(length(veins),1); % Special case of far I guess
         counter = 1;
 
-        for k = 0:(users-1)
-            %1 and 4
-            for j = [k*images_per_user+1 k*images_per_user+4]
+       % for k = 0:(users-1)
+            %Test with samples 2 and 5 which we did not train with
+        %    for j = [k*images_per_user+2 k*images_per_user+5]
+             for j = 1:length(veins)   % Can do this since the distance matrix has been set up correctly
                 dis = distances_centroid(j,:);
                 [dis, idx] = sort(dis, 'ascend');
                 val = dis(1);
@@ -52,8 +59,9 @@ for num_clusters = [10:10:120]
                 if (mod(j,100) == 0)
                    fprintf('%i\n', j); 
                 end    
-            end
-        end
+             end   
+       %     end
+       % end
 
         for j = 1:length(veins_unreg)
 

@@ -1,4 +1,4 @@
-function [ cluster ] = get_cluster( number_of_clusters, index, veins, col_to_sort )
+function [ cluster ] = get_cluster( number_of_clusters, index, veins, training_indices, col_to_sort )
 %get_cluster Returns the cluster centroids for set of data
 % Uses k-means to calculate centroids of the clusters. 
 % kmeans runs for 200 iterations
@@ -14,12 +14,17 @@ function [ cluster ] = get_cluster( number_of_clusters, index, veins, col_to_sor
 % col_to_sort is used for determining initial centroid locations
 
 if (nargin < 4)
+   training_indices = [0, 2, 3, 5]; 
+end
+
+if (nargin < 5)
    col_to_sort = 2; 
 end
 
 cluster = [];
 
-training = [index, index+2, index+3, index+5];
+%training = [index, index+2, index+3, index+5];
+training = index + training_indices;
 training_data = [];
 
 for i = training
@@ -46,9 +51,9 @@ end
 [vals, cluster] = kmeans_open(training_data, number_of_clusters, 'start', starting_point, 'emptyaction', 'drop', 'Maxiter', 200);
 % Remove empty clusters now
 
-% histogram = hist(vals, number_of_clusters);
-% idx = find( histogram == 0 | histogram == 1);
-% cluster(idx, :) = NaN;
+histogram = hist(vals, number_of_clusters);
+idx = find( histogram == 0 | histogram == 1);
+cluster(idx, :) = NaN;
 
 end
 

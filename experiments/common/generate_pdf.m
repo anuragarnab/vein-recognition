@@ -1,6 +1,6 @@
 function [ x, y ] = generate_pdf( data, bins )
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+%UNTITLED3 THIS FUNCTION IS NOW DEPRECATED!
+% Don't use this any more!
     
     range = max(data) - min(data);
     y = zeros (bins, 1);
