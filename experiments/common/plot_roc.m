@@ -10,7 +10,7 @@ function [ output_args ] = plot_roc( corrects, correct_negs, threshes, num_outli
     nice_blue = [51/255, 153/255, 1];
 
     far = length(correct_negs) - sum(correct_negs);
-    frr = length(corrects) - sum(corrects);
+    frr = length(corrects) - sum(corrects) - num_outliers;
     
     far = far ./ length(correct_negs) .* 100;
     frr = frr ./ (length(corrects) - num_outliers) .* 100;
@@ -20,7 +20,7 @@ function [ output_args ] = plot_roc( corrects, correct_negs, threshes, num_outli
     set(gca,'XTick', [0:10:100]);
     set(gca,'YTick', [0:10:100]);
     hold on
-    x = [0:1:100];
+    x = [0:0.001:100];
     plot (x, x, 'green');
     xlabel('False acceptance rate (FAR)');
     ylabel('False rejection rate (FRR)');
@@ -29,7 +29,7 @@ function [ output_args ] = plot_roc( corrects, correct_negs, threshes, num_outli
     goodplot();
     
     figure
-    plot(threshes, sum(corrects) ./ (length(corrects) - num_outliers) .* 100, 'color', crimson, 'linewidth', 2);
+    plot(threshes, (sum(corrects)) ./ (length(corrects) - num_outliers) .* 100, 'color', crimson, 'linewidth', 2);
     hold on
     plot(threshes, sum(correct_negs) ./ length(correct_negs) .* 100, 'color', nice_blue, 'linewidth', 2);
     xlabel('Threshold');

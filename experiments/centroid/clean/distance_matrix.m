@@ -1,6 +1,6 @@
 function [ distances_centroid, imp_distances_centroid] = distance_matrix( clusters1, clusters2, clusters3, clusters4, clusters5, clusters6, veins, veins_unreg, users, images_per_user )
 %UNTITLED Summary of this function goes here
-%   Very crude way of doing cross validation testing with three folds
+%   Very crude way of doing cross validation testing with three (now 6) folds
 
 if (nargin < 9)
    users = 100; 

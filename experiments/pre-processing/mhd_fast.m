@@ -46,11 +46,7 @@ end
 %distance_matrix = reshape (distance_matrix, rows * cols, 1);
 
 for j = 1:total+1
-   
-%    if (j == 25)
-%        disp ('fuck');
-%    end
-    
+       
    minMatrix = min (distance_matrix(:));
    [row_index, col_index] = find(distance_matrix == minMatrix, 1);
    

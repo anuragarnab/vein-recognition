@@ -15,7 +15,7 @@ function [  ] = plot_pdf( a, b, binsA, binsB, ptitle, pxlabel, pylabel, plegend 
     end
     
     if (nargin < 7)
-       plegned = ''; 
+       plegend = ''; 
     end
     
     [numA, centersA] = hist(a, binsA);
