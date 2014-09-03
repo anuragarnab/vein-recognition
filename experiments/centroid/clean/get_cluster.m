@@ -1,4 +1,4 @@
-function [ cluster ] = get_cluster( number_of_clusters, index, veins, training_indices, col_to_sort )
+function [ cluster ] = get_cluster( fraction, index, veins, training_indices, col_to_sort )
 %get_cluster Returns the cluster centroids for set of data
 % Uses k-means to calculate centroids of the clusters. 
 % kmeans runs for 200 iterations
@@ -31,7 +31,8 @@ for i = training
     training_data = [training_data ; [veins(i).x veins(i).y] ];
 end
 
-number_of_clusters = min(number_of_clusters, length(training_data));
+%number_of_clusters = min(number_of_clusters, length(training_data));
+number_of_clusters = floor (fraction * length(training_data));
 
 %% This is my method of initially setting the starting points. Sort the (x, y) pairs according to the y co-ordinate, and then pick samples at uniformly spaced intervals
 training_data = sortrows (training_data,col_to_sort);

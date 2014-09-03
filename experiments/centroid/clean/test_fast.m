@@ -6,7 +6,7 @@ threshold = 300;
 history = [];
 count = 1;
 
-for num_clusters = [120]
+for num_clusters = [0.02 : 0.02 : 0.98]
 
     thresh = [1:0.25:20];
     %thresh = [thresh 300:50:600];
@@ -17,8 +17,8 @@ for num_clusters = [120]
 %     clus4 = train_cluster(images_per_user, users, num_clusters, veins, [0, 1, 2, 4, 5]);
 %     clus5 = train_cluster(images_per_user, users, num_clusters, veins, [0, 1, 2, 3, 5]);
 %     clus6 = train_cluster(images_per_user, users, num_clusters, veins, [0, 1, 2, 3, 4]);
-
-    [distances_centroid, imp_distances_centroid] = distance_matrix( clus1, clus2, clus3, clus4, clus5, clus6, veins, veins_unreg );
+% 
+%     [distances_centroid, imp_distances_centroid] = distance_matrix( clus1, clus2, clus3, clus4, clus5, clus6, veins, veins_unreg );
     
     correct_record = [];
     correct_neg_record = [];
@@ -77,8 +77,11 @@ for num_clusters = [120]
             if (id == -1)
                 correct_neg(j) = 1;
             else
+                if (val > threshold)
+                    disp('wtf');
+                end
                 far(j) = 1;
-                fprintf('Incorrect. Should not have accepted %d. Identified as %d. Distance was %0.3f\n',j, idx, val);
+                fprintf('Incorrect. Should not have accepted %d. Identified as %d. Distance was %0.3f\n',j, id, val);
             end
 
         end
