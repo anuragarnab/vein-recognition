@@ -6,7 +6,7 @@ threshold = 300;
 history = [];
 count = 1;
 
-for num_clusters = [0.02 : 0.02 : 0.98]
+for num_clusters = [160]
 
     thresh = [1:0.25:20];
     %thresh = [thresh 300:50:600];

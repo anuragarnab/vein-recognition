@@ -1,6 +1,6 @@
 id = 52;
 
-cl = train_cluster(6,100,0.58,veins,[0, 2, 3, 4, 1]);
+cl = train_cluster(6,100,0.9,veins,[0, 2, 3, 4, 1]);
 count = 0;
 test_thresh = 5;
 figure
