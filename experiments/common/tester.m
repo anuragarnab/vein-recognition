@@ -1,10 +1,22 @@
-function [ correct_record, correct_neg_record, far_record, frr_record, wrong_rec_record ] = tester( distance_matrix, imp_distance_matrix, threshes, samples_per_person)
+function [ correct_record, correct_neg_record, far_record, frr_record, wrong_rec_record ] = tester( distance_matrix, imp_distance_matrix, threshes, limits, samples_per_person)
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
-if (nargin < 4)   
+ix = 2;
+
+if (nargin < 5)   
     samples_per_person = 6;
 end
+
+if (nargin < 4)   
+    limits = 0;
+end
+
+if (limits == 1)
+    ix = 1;
+end
+
+
 
 correct_record = [];
 correct_neg_record = [];
@@ -26,16 +38,22 @@ for threshold = threshes
 
     for i = 1:size(distance_matrix,1)
         
-        dis = distance_matrix(:,i);
+        dis = distance_matrix(i,:);
         [dis, idx] = sort(dis, 'ascend');
-        val = dis(2);
-        id = idx(2);
+        val = dis(ix);
+        id = idx(ix);
         
         if (val > threshold)
             id = -1;
         end
         
-        [start, finish] = get_limits(i, samples_per_person);
+        if (limits)
+            start = floor((i-0.1)/samples_per_person);
+            finish = start+1;            
+        else
+            [start, finish] = get_limits(i, samples_per_person);
+        end
+
         if (id > start && id <= finish)
             correct(i) = 1;
         elseif (id == -1)
@@ -53,8 +71,8 @@ for threshold = threshes
         
         dis = imp_distance_matrix(i,:); % Important. Thats how distance_matrix_imposters runs
         [dis, idx] = sort(dis, 'ascend');
-        val = dis(2);
-        id = idx(2);
+        val = dis(ix);
+        id = idx(ix);
         
         if (val > threshold)
             id = -1;
