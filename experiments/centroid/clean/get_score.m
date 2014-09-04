@@ -1,4 +1,4 @@
-function [ score ] = get_score( cluster, points )
+function [ score ] = get_score( cluster, points, histogram )
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 %     score = 0;
@@ -11,9 +11,13 @@ function [ score ] = get_score( cluster, points )
 %          fraction = 1;
 %     end
 
+    if (nargin < 3)
+        histogram = ones(size(cluster,1));
+    end
+
     dis = zeros(length(points), 1);
     for i = 1:size(points,1)
-       dis(i) = distance_to_cluster(cluster, [points(i, :)]); 
+       dis(i) = distance_to_cluster(cluster, [points(i, :)], histogram); 
     end
     
 %     dis = sort (dis, 'ascend');

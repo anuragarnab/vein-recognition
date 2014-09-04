@@ -1,4 +1,4 @@
-function [ cluster ] = get_cluster( number_of_clusters, index, veins, training_indices, fractions, col_to_sort, remove1entry )
+function [ cluster, histogram ] = get_cluster( number_of_clusters, index, veins, training_indices, fractions, col_to_sort, remove1entry )
 %get_cluster Returns the cluster centroids for set of data
 % Uses k-means to calculate centroids of the clusters. 
 % kmeans runs for 200 iterations
@@ -63,8 +63,10 @@ end
 [vals, cluster] = kmeans_open(training_data, number_of_clusters, 'start', starting_point, 'emptyaction', 'drop', 'Maxiter', 200);
 % Remove empty clusters now
 
+histogram = hist(vals, number_of_clusters);
+
 if (remove1entry)
-    histogram = hist(vals, number_of_clusters);
+    %histogram = hist(vals, number_of_clusters);
     idx = find( histogram == 0 | histogram == 1);
     cluster(idx, :) = NaN;
 end

@@ -2,8 +2,9 @@ addpath ../../common
 
 outliers = 13;
 
-clus_nums = [1:1:4];
-clus_nums = [clus_nums 30:1:length(history)];
+%clus_nums = [1:1:4];
+%clus_nums = [clus_nums 30:1:length(history)];
+clus_nums = [1:1:length(history)];
 count = 1;
 
 colours = distinguishable_colors(length(clus_nums));
