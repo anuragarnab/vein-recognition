@@ -17,3 +17,5 @@ report/Thesis.pdf
 *.blg
 *.bbl
 *.asv
+experiments/fusion_mhd_lbp/lbp/
+experiments/fusion_mhd_lbp/mhd/
