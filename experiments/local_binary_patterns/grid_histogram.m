@@ -14,7 +14,7 @@ function [ histograms ] = grid_histogram( image, r, c, verbose, histogram_range 
     end
     
     rows = zeros(r,2);
-    cols = zeros(r,2);
+    cols = zeros(c,2);
     
     for i = 1:r
         rows(i,1) = floor(height*(i-1)/r)+1;
