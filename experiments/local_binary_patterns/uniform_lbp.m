@@ -7,7 +7,10 @@ function [ uniform_code ] = uniform_lbp( code , number_bits )
 % The thing is, I want to be able to index 0 as well. So I map everything
 % one up. Ie for 0, index table at 1. For 15, index table at 16
 
-% Thanks to 
+% Reference to
+% http://stackoverflow.com/questions/7603608/how-to-implement-uniform-lbp?lq=1.
+% The solution posted there had an error, so I commented about that as well
+% on the site
 
 if (nargin < 2)
    number_bits = 8; 
