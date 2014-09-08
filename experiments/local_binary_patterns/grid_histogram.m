@@ -3,6 +3,7 @@ function [ histograms ] = grid_histogram( image, r, c, verbose, histogram_range 
 %   Detailed explanation goes here
     [height, width] = size(image);
     histograms = [];
+    blue = [79 129 189]./255;
     
     if (nargin < 5)
        histogram_range = [0:1:58];
@@ -44,6 +45,11 @@ function [ histograms ] = grid_histogram( image, r, c, verbose, histogram_range 
           if (verbose)
               subplot(r,c,count);
               bar(h);
+              xlabel('Uniform LBP Codeword');
+              ylabel('Frequency');
+              set (gca, 'YLim', [0 250]);
+              set (findobj(gca,'Type','patch'), 'FaceColor', blue)
+              imshow(im);
               count = count + 1;
           end
        end

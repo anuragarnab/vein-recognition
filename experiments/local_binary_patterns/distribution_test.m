@@ -1,6 +1,6 @@
 num_per_sample = 6;
-genuine = [];
-imposter = [];
+genuine_lbp_chi = [];
+imposter_lbp_chi = [];
 
 for i = 1:length(veins)
    
@@ -19,8 +19,8 @@ for i = 1:length(veins)
     
     imposters_idx = idx(idx <= start | idx > finish);
     imposter_distances = d (imposters_idx);
-    imposter = [imposter imposter_distances];
+    imposter_lbp_chi = [imposter_lbp_chi imposter_distances];
     
     correct_idx = idx(idx > start | idx <= finish);
-    genuine = [genuine min(d(correct_idx))];
+    genuine_lbp_chi = [genuine_lbp_chi min(d(correct_idx))];
 end

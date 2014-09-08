@@ -1,6 +1,6 @@
 resize_factor = 1;
 rows = 2;
-cols = 8;
+cols = 16;
 
 for i = 1:length(veins)
     veins(i).lbp = get_lbp(veins(i).filename, resize_factor);

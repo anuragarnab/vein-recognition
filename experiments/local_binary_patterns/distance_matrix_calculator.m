@@ -10,7 +10,7 @@ for r = [1 2 4]
         distance_matrix_imposters;
         
         fname = strcat('r',num2str(rows),'c',num2str(cols));
-        save (fname, distances_ulbp_chi, imp_distances_ulbp_chi);
+        save (fname, 'distances_ulbp_chi', 'imp_distances_ulbp_chi');
         
     end
 end

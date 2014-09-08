@@ -10,6 +10,7 @@ lbp = zeros(size(image));
 % assuming 3x3 grid, we have to start with a padding of one
 for row = 2:size(image,1)-1
     for col = 2:size(image,2)-1
+                
         for i = 1:length(cols)
            rd = rows(i);
            cd = cols(i);
