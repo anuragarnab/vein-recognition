@@ -19,3 +19,6 @@ report/Thesis.pdf
 *.asv
 experiments/fusion_mhd_lbp/lbp/
 experiments/fusion_mhd_lbp/mhd/
+experiments/common/cbrewer.zip
+experiments/common/license.txt
+experiments/common/linspecer.zip
