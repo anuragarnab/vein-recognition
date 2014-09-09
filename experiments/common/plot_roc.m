@@ -11,11 +11,11 @@ function [ output_args ] = plot_roc( corrects, correct_negs, threshes, num_outli
     nice_green = [155, 187, 89]./255;
     nice_purple = [128, 100, 162]./255;
 
-    far = length(correct_negs) - sum(correct_negs);
-    frr = length(corrects) - sum(corrects) - num_outliers;
-    
-    far = far ./ length(correct_negs) .* 100;
-    frr = frr ./ (length(corrects) - num_outliers) .* 100;
+    far = size(correct_negs,1) - sum(correct_negs);
+    frr = size(corrects,1) - sum(corrects) - num_outliers;
+
+    far = far ./ size(correct_negs,1) .* 100;
+    frr = frr ./ (size(correct_negs,1) - num_outliers) .* 100;
     
     figure
     plot (far, frr, 'color', crimson, 'linewidth', 2);
