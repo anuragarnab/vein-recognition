@@ -27,7 +27,7 @@ wrong_rec_record = [];
 
 for threshold = threshes
 
-    fprintf('Testing threshold = %0.9f\n', threshold);
+%     fprintf('Testing threshold = %0.9f\n', threshold);
     % These four effectively make up the quadrant
     correct = zeros (size(distance_matrix, 1),1);
     correct_neg = zeros (size(imp_distance_matrix,1),1);
@@ -62,9 +62,9 @@ for threshold = threshes
             wrong_recognised(i) = 1;
         end 
 
-        if (mod(i,100) == 0)
-           fprintf('%i\n', i); 
-        end
+%         if (mod(i,100) == 0)
+%            fprintf('%i\n', i); 
+%         end
     end
 
     for i=1:size(imp_distance_matrix,1)
@@ -84,9 +84,9 @@ for threshold = threshes
            far(i) = 1;
        end
 
-       if (mod(i,100) == 0)
-           fprintf('%i\n', i); 
-       end
+%        if (mod(i,100) == 0)
+%            fprintf('%i\n', i); 
+%        end
     end
     
     correct_record = [correct_record correct];

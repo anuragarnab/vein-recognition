@@ -1,15 +1,23 @@
 function goodplot()
 % function which produces a nice-looking plot
 % and sets up the page for nice printing
-set(get(gca,'xlabel'),'FontSize', 18, 'FontWeight', 'Bold');
-set(get(gca,'ylabel'),'FontSize', 18, 'FontWeight', 'Bold');
-set(get(gca,'zlabel'),'FontSize', 18, 'FontWeight', 'Bold');
-set(get(gca,'title'),'FontSize', 18, 'FontWeight', 'Bold');
+
+%set(findall(gcf,'type','axes'),'fontsize',14,'FontWeight', 'Bold', 'FontName', 'Calibri')
+set(get(gca,'title'),'FontSize', 18, 'FontWeight', 'Bold', 'FontName', 'Calibri');
+set(get(gca,'xlabel'),'FontSize', 14, 'FontWeight', 'Bold','FontName', 'Calibri');
+set(get(gca,'ylabel'),'FontSize', 14, 'FontWeight', 'Bold','FontName', 'Calibri');
+set(get(gca,'zlabel'),'FontSize', 14, 'FontWeight', 'Bold','FontName', 'Calibri');
+
+% set(get(gca,'xlabel'),'FontSize', 16, 'FontWeight', 'Bold');
+% set(get(gca,'ylabel'),'FontSize', 16, 'FontWeight', 'Bold');
+% set(get(gca,'zlabel'),'FontSize', 16, 'FontWeight', 'Bold');
+% set(get(gca,'title'),'FontSize', 18, 'FontWeight', 'Bold');
 %colorbar;
 % box off; axis square;
 set(gca,'linewidth',2);
 set(gca,'FontSize',14);
 set(gca,'FontWeight','Bold');
+set(gca,'FontName','Calibri');
 set(gcf,'color','w');
 set(gcf,'PaperUnits','inches');
 set(gcf,'PaperSize', [12 12]);
