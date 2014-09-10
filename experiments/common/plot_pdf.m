@@ -47,7 +47,7 @@ function [  ] = plot_pdf( a, b, binsA, binsB, ptitle, pxlabel, pylabel, plegend 
     xlabel(pxlabel);
     ylabel(pylabel);
     title(ptitle);
-    legend(plegend, 'Location', 'SouthEast', 'EdgeColor', 'white');
+    legend(plegend, 'Location', 'SouthEast');
     
     disp('Remember to label the graph!');
 

@@ -6,6 +6,9 @@ function [ output_args ] = plot_roc( corrects, correct_negs, threshes, num_outli
        num_outliers = 13; 
     end
     
+    colours = linspecer(2);
+    set(0,'DefaultAxesColorOrder',colours)
+    
     crimson = [192, 80, 77]./255;
     nice_blue = [79, 129, 189]./255;
     nice_green = [155, 187, 89]./255;
@@ -18,35 +21,51 @@ function [ output_args ] = plot_roc( corrects, correct_negs, threshes, num_outli
     frr = frr ./ (size(correct_negs,1) - num_outliers) .* 100;
     
     figure
-    plot (far, frr, 'color', crimson, 'linewidth', 2);
+    hold all;
+    plot (far, frr, 'linewidth', 2);
+    %plot (far, frr, 'color', crimson, 'linewidth', 2);
     %set(gca,'XTick', [0:10:100]);
     %set(gca,'YTick', [0:10:100]);
     
     set(gca, 'XLim', [0 100]);
     set(gca, 'YLim', [0 100]);
 
-    hold on
+%    hold on
     x = [0:0.001:100];
-    plot (x, x, 'linestyle', '-.' ,'color', nice_green, 'linewidth', 2);
+ %   plot (x, x, 'linestyle', '-.' ,'color', nice_green, 'linewidth', 2);
+    plot (x, x, 'linestyle', '--', 'linewidth', 2);
     xlabel('False acceptance rate (FAR)');
     ylabel('False rejection rate (FRR)');
     title('Receiver Operator Characteristic (ROC)')
 %    text(6.475, 6.475, ['\downarrow Equal error rate of 6.475%']);
+    legend({'ROC','EER line   '});
     goodplot();
     
     figure
-    plot(threshes, (sum(corrects)) ./ (length(corrects) - num_outliers) .* 100, 'color', crimson, 'linewidth', 2);
-    hold on
-    plot(threshes, sum(correct_negs) ./ length(correct_negs) .* 100, 'color', nice_blue, 'linewidth', 2);
+    colours = linspecer(3);
+    set(0,'DefaultAxesColorOrder',colours)
+    hold all
+    
+    plot(threshes, (sum(corrects)) ./ (size(corrects,1) - num_outliers) .* 100, 'linewidth', 2);
+    plot(threshes, sum(correct_negs) ./ size(correct_negs,1) .* 100, 'linewidth', 2);
     xlabel('Threshold');
     ylabel('Percentage');
-    legend({'Genuine queries correctly accepted' ; 'Imposter queries correctly rejected'}, 'Location', 'SouthEast', 'EdgeColor', 'white');
+    legend({'Genuine queries correctly accepted' ; 'Imposter queries correctly rejected   '}, 'Location', 'SouthEast');
     title ('Classification accuracy')
-    
     goodplot();
     
+    colours = linspecer(1);
+    set(0,'DefaultAxesColorOrder',colours)
+    hold all;
     figure
-    plot (threshes, (sum(corrects) + sum(correct_negs)) ./ (length(corrects) + length(correct_negs) - num_outliers) .* 100, 'color', crimson, 'linewidth', 2 );
+    
+    % Averag the correct and correct_neg separately as their denominators
+    % can be different
+    correct_rate = sum(corrects) ./ (size(corrects,1) - num_outliers);
+    correct_neg_rate = sum(correct_negs) ./ size(correct_negs,1);
+    average = mean([correct_rate ; correct_neg_rate]).*100;
+    plot (threshes, average,'linewidth', 2 );
+    %plot (threshes, (sum(corrects) + sum(correct_negs)) ./ (size(corrects,1) + size(correct_negs,1) - num_outliers) .* 100,'linewidth', 2 );
     xlabel('Threshold');
     ylabel('Percentage %');
     title('Average of genuine acceptance and imposter rejection');
