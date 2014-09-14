@@ -1,3 +1,5 @@
+% This was more to just get a feel of how svm works
+
 testing = 3;
 num_per_sample = 6;
 

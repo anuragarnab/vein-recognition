@@ -95,8 +95,9 @@ for threshold = threshes
     frr_record = [frr_record frr];
     wrong_rec_record = [wrong_rec_record wrong_recognised];
     
-    save test threshold correct_record correct_neg_record far_record frr_record wrong_rec_record
-
+    save test threshold correct_record correct_neg_record far_record frr_record wrong_rec_record threshes
+    fprintf('%d \n', threshold);
+    
 end
 
 end
