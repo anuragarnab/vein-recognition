@@ -22,3 +22,5 @@ experiments/fusion_mhd_lbp/mhd/
 experiments/common/cbrewer.zip
 experiments/common/license.txt
 experiments/common/linspecer.zip
+experiments/common/libsvm-3.18/
+experiments/common/libsvm-3.18.zip
