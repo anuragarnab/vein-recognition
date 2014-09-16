@@ -19,11 +19,12 @@ for i = 1:size(test_imposters,1)
    test_imposters(i,2) = imp_mhd(idx(i),i);
 end
 
-for logc = [-2:0.5:5];
+for logc = [-3:0.5:5];
     c = 2^logc;
 for loggamma = [-4:0.5:3];
     gamma = 2^loggamma;
-for w1 = 1:1:10
+for w1 = 1:1:20
+for degree = 1:1:4
 
     %% Do multiple cross validation. Split up the training and testing samples. Then train the SVM. 
     svms = [];
@@ -63,7 +64,9 @@ for w1 = 1:1:10
 %         gamma = 0.5;
 %         w1 = 1;
 
-        cmd = ['-s 0 -t 2 -b 1 -w-1 1 -w1 ', num2str(w1), ' -g ', num2str(gamma), ' -c ', num2str(c), ' -q'];
+%        cmd = ['-s 0 -t 2 -b 1 -w-1 1 -w1 ', num2str(w1), ' -g ', num2str(gamma), ' -c ', num2str(c), ' -q'];
+        %cmd = ['-s 0 -t 0 -b 1 -w-1 1 -w1 ', num2str(w1),' -c ', num2str(c), ' -q'];
+        cmd = ['-s 0 -t 1 -b 1 -w-1 1 -w1 ', num2str(w1), ' -g ', num2str(gamma), ' -c ', num2str(c), ' -d ', num2str(degree),' -q'];
         svm_model = svmtrain(labels,train_data, cmd);
     %     svm_model = svmtrain(labels,train_data, '-s 0 -t 2 -b 1 -c 8 -g 0.5 -w1 10 -w-1 1');
     %    plotboundary(labels,train_data, svm_model, 't');
@@ -108,7 +111,7 @@ for w1 = 1:1:10
     history(count).correct_acceptance = correct_acceptance;
     history(count).correct_rejects = correct_rejects;
     history(count).svms = svms;
-    history(count).gamma = gamma;
+   % history(count).gamma = gamma;
     history(count).c = c;
     history(count).w1 = w1;
 
@@ -118,5 +121,5 @@ for w1 = 1:1:10
 end
 end
 end
-
+end
 

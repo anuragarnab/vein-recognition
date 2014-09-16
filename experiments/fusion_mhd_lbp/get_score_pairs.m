@@ -34,9 +34,12 @@ function [ genuines, imposters ] = get_score_pairs( d1, d2, num_per_sample, num_
         imp = distances(imposter_idx,:);
         
         genuines = [genuines ; gen];
-        imposters = [imposters ; imp(1:num_imposters,:)];
+        imposters = [imposters ; imp(1:num_imposters*2,:)];
     
     end
+    
+    imposters = sortrows(imposters,1);
+    imposters = imposters(1:2:end,:);
     
 end
 
