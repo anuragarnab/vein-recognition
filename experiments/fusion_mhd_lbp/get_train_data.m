@@ -18,7 +18,7 @@ function [ train_data, labels , mu, sigma ] = get_train_data( testing, veins, ge
 
 
     imposter_data = imposters(imposter_indices,:);
-    imposter_data = imposter_data(imposter_data > zero_far, :);
+    imposter_data = imposter_data(imposter_data(:,1) > zero_far, :);
 
     train_data = [genuines(train_idx, :) ; imposter_data];
     [train_data, mu, sigma] = zscore(train_data);
