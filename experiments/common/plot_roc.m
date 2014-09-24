@@ -34,11 +34,12 @@ function [ output_args ] = plot_roc( corrects, correct_negs, threshes, num_outli
     x = [0:0.001:100];
  %   plot (x, x, 'linestyle', '-.' ,'color', nice_green, 'linewidth', 2);
     plot (x, x, 'linestyle', '--', 'linewidth', 2);
-    xlabel('False acceptance rate (FAR)');
-    ylabel('False rejection rate (FRR)');
+    xlabel('False acceptance rate (FAR) [%]');
+    ylabel('False rejection rate (FRR) [%]');
     title('Receiver Operator Characteristic (ROC)')
 %    text(6.475, 6.475, ['\downarrow Equal error rate of 6.475%']);
     legend({'ROC','EER line   '});
+    scatter(far, frr, 'filled'); 
     goodplot();
     
     figure

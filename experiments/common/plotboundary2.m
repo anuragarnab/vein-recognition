@@ -1,4 +1,4 @@
-function [f1, f2, f3, f4] = plotboundary(labels, features, model, varargin)
+function [f1, f2, f3, f4, f5] = plotboundary(labels, features, model, xthresh, ythresh)
 
 % PLOTBOUNDARY    Plot the SVM classification boundary in Exercise 8
 %
@@ -12,6 +12,7 @@ function [f1, f2, f3, f4] = plotboundary(labels, features, model, varargin)
 % plots. Need this to add a legend to the plot
 
 figure; hold on
+contrasting_colour = [204 51 153]./255;
 
 % Make classification predictions over a grid of values
 xplot = linspace(min(features(:,1))*1.02, max(features(:,1)), 200)*1.02';
@@ -27,11 +28,14 @@ for i = 1:size(X, 2)
    vals(:,i) = decision_values;
 end
 
+% Plot the individual classifier boundaries
+f5 = plot( min(features(:,1))*1.02:0.001:max(features(:,1))*1.02, xthresh, 'color', contrasting_colour, 'LineWidth', 2);
+hold on
+plot( ythresh, [min(features(:,2))*1.02:0.001:max(features(:,2))*1.02], 'linewidth', 8, 'color', contrasting_colour);
+
 % Plot the SVM boundary
 colormap bone
-if (size(varargin, 2) == 1) && (varargin{1} == 't')
-   [~, f1] = contourf(X,Y, vals, 50, 'LineStyle', 'none');
-end
+[~, f1] = contourf(X,Y, vals, 50, 'LineStyle', 'none');
 [~, f2] = contour(X,Y, vals, [0 0], 'LineWidth', 2, 'Color', 'k');
 
 % Plot the training data on top of the boundary

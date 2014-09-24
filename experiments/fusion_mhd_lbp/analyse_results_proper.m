@@ -1,7 +1,7 @@
 num_outliers = 7;
 eers = [];
 
-for chosen = [27]
+for chosen = [1]
 
     [corrects_scores, correct_negs_scores] = get_scores (chosen, history, veins, distances_ulbp_chi, distances_mhd, imp_distances_ulbp_chi, imp_distances_mhd);
     

@@ -177,13 +177,13 @@ end
 %% Capture current figure in high resolution
 if ~strcmp(self.figmode,'lazyupdate');
     %tempfile = 'myaa_temp_screendump.png';
-    tempfile = ['myaa_temp_screendump ',num2str(rand(1)*1e5,'%5.0f'), '.png'] ; 
+    tempfile = ['myaa_temp_screendump ',num2str(rand(1)*1e5,'%5.0f'), '.png'] ; tempeps = ['myaa_temp_screendump ',num2str(rand(1)*1e5,'%5.0f'), '.eps'] ; 
     self.source_fig = gcf;
     current_paperpositionmode = get(self.source_fig,'PaperPositionMode');
     current_inverthardcopy = get(self.source_fig,'InvertHardcopy');
     set(self.source_fig,'PaperPositionMode','auto');
     set(self.source_fig,'InvertHardcopy','off');
-    print(self.source_fig,['-r',num2str(screen_DPI*self.K(1))], '-dpng', tempfile);
+    print(self.source_fig,['-r',num2str(screen_DPI*self.K(1))], '-dpng', tempfile); print(self.source_fig,['-r',num2str(screen_DPI*self.K(1))], '-deps', tempeps);
     set(self.source_fig,'InvertHardcopy',current_inverthardcopy);
     set(self.source_fig,'PaperPositionMode',current_paperpositionmode);
     self.raw_hires = imread(tempfile);

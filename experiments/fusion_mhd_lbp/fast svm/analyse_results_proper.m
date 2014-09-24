@@ -1,15 +1,18 @@
 num_outliers = 7;
 eers = [];
 
-svms = history_poly(479).svms;
+%svms = history_poly(479).svms;
+%svms = history_ulbpMhdRad(343).svms;
+%svms = history(10).svms;
+svms = history(1).svms;
 
 for chosen = [1]
 
     [corrects_scores, correct_negs_scores] = get_scores_fast (svms, data2);
     
-    threshes =  [-10:0.05:-1];
+    threshes =  [-5:0.05:-1];
     threshes = [threshes -0.99:0.001:0.99];
-    threshes = [threshes 1:0.05:1];
+    threshes = [threshes 1:0.05:5];
     corrects = [];
     correct_negs = [];
     counter = 1;

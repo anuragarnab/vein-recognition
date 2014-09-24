@@ -4,9 +4,9 @@ function goodplot()
 
 %set(findall(gcf,'type','axes'),'fontsize',14,'FontWeight', 'Bold', 'FontName', 'Calibri')
 set(get(gca,'title'),'FontSize', 18, 'FontWeight', 'Bold', 'FontName', 'Calibri');
-set(get(gca,'xlabel'),'FontSize', 14, 'FontWeight', 'Bold','FontName', 'Calibri');
-set(get(gca,'ylabel'),'FontSize', 14, 'FontWeight', 'Bold','FontName', 'Calibri');
-set(get(gca,'zlabel'),'FontSize', 14, 'FontWeight', 'Bold','FontName', 'Calibri');
+set(get(gca,'xlabel'),'FontSize', 16, 'FontWeight', 'Bold','FontName', 'Calibri');
+set(get(gca,'ylabel'),'FontSize', 16, 'FontWeight', 'Bold','FontName', 'Calibri');
+set(get(gca,'zlabel'),'FontSize', 16, 'FontWeight', 'Bold','FontName', 'Calibri');
 
 % set(get(gca,'xlabel'),'FontSize', 16, 'FontWeight', 'Bold');
 % set(get(gca,'ylabel'),'FontSize', 16, 'FontWeight', 'Bold');

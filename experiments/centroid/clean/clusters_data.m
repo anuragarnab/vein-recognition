@@ -1,4 +1,6 @@
-id = 52;
+id = 4;
+
+colours = linspecer(3);
 
 cl = train_cluster(6,100,50,veins,[0, 2, 3, 4, 1]);
 count = 0;
@@ -8,7 +10,7 @@ figure
 points = [];
 outliers = [];
 
-for i=6*(id-1):6*id-1
+for i=6*(id-1)+1:6*id-1
     temp = [veins(i).x veins(i).y];
     for j=1:length(temp)
         d = distance_to_cluster(cl(id).cluster, temp(j,:));
@@ -28,15 +30,18 @@ end
 %     hold on
 % end
 
-scatter (points(:,1), points(:,2), 'blue');
+size = 36; %default
+scatter (points(:,1), points(:,2), size, colours(1,:), 'Marker', '+', 'linewidth', 2);
 hold on
-scatter (outliers(:,1), outliers(:,2), 'magenta');
-scatter ( cl(id).cluster(:,1), cl(id).cluster(:,2), 'red');
+scatter ( cl(id).cluster(:,1), cl(id).cluster(:,2), 2*size, colours(2,:), 'linewidth', 2, 'Marker', 'X');
+scatter (outliers(:,1), outliers(:,2), size, colours(1,:), 'linewidth', 2, 'Marker', '+'); % Not differentiating between outliers in the plot I need now (19 Sep)
 
 cl(id).cluster = cl(id).cluster(~any(isnan(cl(id).cluster),2),:); 
 [vx, vy] = voronoi ( cl(id).cluster(:,1), cl(id).cluster(:,2) );
 hold on
-plot (vx, vy, 'green');
+plot (vx, vy, 'color', colours(3,:), 'linewidth', 2);
+legend({'Bifurcation points','Cluster centroids'});
+goodplot();
 
 set (gca, 'XLim', [0 320]);
 set (gca, 'YLim', [0 80]);
