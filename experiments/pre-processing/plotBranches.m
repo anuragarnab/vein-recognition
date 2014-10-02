@@ -13,7 +13,7 @@ function [] = plotBranches( vein, size )
     hold on
     scatter(vein.x, vein.y, size, 'g+');
     
-    zoomStart = 150;
+    zoomStart = 0;
     zoomStop = 320;
     set (gca, 'XLim', [zoomStart zoomStop]);
     

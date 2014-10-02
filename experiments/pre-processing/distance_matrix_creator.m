@@ -1,8 +1,8 @@
 distances = [];
 
 count = 1;
-for mhd_frac = 0.05:0.05:1
-    [d,i] = distance_matrix(veins, veins_unreg, mhd_fraction);
+for mhd_frac = 0.7
+    [d,i] = distance_matrix(veins, veins_unreg, mhd_frac);
     
     distances(count).gen_distance = d;
     distances(count).imp_distance = i;

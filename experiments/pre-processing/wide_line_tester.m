@@ -5,7 +5,7 @@
 
 
 %image = get_roi ('images/11.bmp');
-    image = imread ('images/11.bmp');
+    image = imread (veins(7).filename);
     image = rgb2gray (image);
     
     projection = sum (image, 2); % Get the vertical projection.

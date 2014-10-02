@@ -1,8 +1,8 @@
-id = 4;
+id = 1;
 
-colours = linspecer(3);
+colours = linspecer(4);
 
-cl = train_cluster(6,100,50,veins,[0, 2, 3, 4, 1]);
+cl = train_cluster(6,100,160,veins,[0, 2, 3, 4, 1]);
 count = 0;
 test_thresh = 5;
 figure
@@ -34,13 +34,13 @@ size = 36; %default
 scatter (points(:,1), points(:,2), size, colours(1,:), 'Marker', '+', 'linewidth', 2);
 hold on
 scatter ( cl(id).cluster(:,1), cl(id).cluster(:,2), 2*size, colours(2,:), 'linewidth', 2, 'Marker', 'X');
-scatter (outliers(:,1), outliers(:,2), size, colours(1,:), 'linewidth', 2, 'Marker', '+'); % Not differentiating between outliers in the plot I need now (19 Sep)
+%scatter (outliers(:,1), outliers(:,2), size, colours(4,:), 'linewidth', 2, 'Marker', '*'); % Not differentiating between outliers in the plot I need now (19 Sep)
 
 cl(id).cluster = cl(id).cluster(~any(isnan(cl(id).cluster),2),:); 
 [vx, vy] = voronoi ( cl(id).cluster(:,1), cl(id).cluster(:,2) );
 hold on
 plot (vx, vy, 'color', colours(3,:), 'linewidth', 2);
-legend({'Bifurcation points','Cluster centroids'});
+legend({'Bifurcation points','Cluster centroids'}); legendmarkeradjust(10, 2)
 goodplot();
 
 set (gca, 'XLim', [0 320]);
