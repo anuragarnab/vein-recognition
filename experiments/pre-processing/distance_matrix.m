@@ -7,8 +7,13 @@ imp_distances_mhd_rel = zeros(length(veins));
 
 for row = 1:length(distances_mhd_rel)
     for col = 1:length(distances_mhd_rel)
-        distances_mhd_rel(row,col) = mhd_fast ( [veins(row).distances], [veins(col).distances], mhd_fraction);
-        imp_distances_mhd_rel(row,col) = mhd_fast ( [veins(row).distances], [veins_unreg(col).distances], mhd_fraction);
+%         distances_mhd_rel(row,col) = mhd_fast ( [veins(row).distances], [veins(col).distances], mhd_fraction);
+%         imp_distances_mhd_rel(row,col) = mhd_fast ( [veins(row).distances], [veins_unreg(col).distances], mhd_fraction);
+        
+%        distances_mhd_rel(row,col) = mhd_fast ( [veins(row).x veins(row).y], [veins(col).x veins(col).y], mhd_fraction);
+        distances_mhd_rel(row,col) = mhd_fast ( [veins(row).x veins(row).y], [veins(col).x veins(col).y], mhd_fraction);
+        imp_distances_mhd_rel(row,col) = mhd_fast ( [veins(row).x veins(row).y], [veins_unreg(col).x veins_unreg(col).y], mhd_fraction);
+
         if (mod(col,100) == 0)
            fprintf('%i ',col);
            save mhd_relative_distances_point2 distances_mhd_rel imp_distances_mhd_rel;
