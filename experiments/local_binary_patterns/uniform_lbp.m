@@ -19,18 +19,20 @@ end
 persistent lutable
 if isempty(lutable)
     % Generate the lookup table
-    lutable = zeros(2^number_bits,1);
-    next_label = 1;
-    for k = 0:2^number_bits-1
-       bits = bitand(k, 2.^(0:number_bits-1)) > 0;
-       
-       if isUniformLBP(bits)
-          lutable(k+1) = next_label;
-          next_label = next_label+1;
-       else
-          lutable(k+1) = 0;
-       end
-    end
+%     lutable = zeros(2^number_bits,1);
+%     next_label = 1;
+%     for k = 0:2^number_bits-1
+%        bits = bitand(k, 2.^(0:number_bits-1)) > 0;
+%        
+%        if isUniformLBP(bits)
+%           lutable(k+1) = next_label;
+%           next_label = next_label+1;
+%        else
+%           lutable(k+1) = 0;
+%        end
+%     end
+
+    lutable = [1, 2, 3, 10, 4, 0, 11, 18, 5, 0, 0, 0, 12, 0, 19, 26, 6, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 20, 0, 27, 34, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0, 0, 28, 0, 35, 42, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 29, 0, 0, 0, 36, 0, 43, 50, 9, 17, 0, 25, 0, 0, 0, 33, 0, 0, 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 57, 16, 24, 0, 32, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 23, 31, 0, 39, 0, 0, 0, 47, 0, 0, 0, 0, 0, 0, 0, 55, 30, 38, 0, 46, 0, 0, 0, 54, 37, 45, 0, 53, 44, 52, 51, 58];
 end
 
 uniform_code = lutable( uint16(code)+1 );
