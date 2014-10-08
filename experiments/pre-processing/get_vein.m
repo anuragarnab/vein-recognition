@@ -8,10 +8,10 @@ function [ image ] = get_vein( image )
 
 %image = adapthisteq ( im );
 
-smooth_filter = fspecial ('gaussian', [13 13], 2);
+smooth_filter = fspecial ('gaussian', [7 7], 2);
 image = imfilter (image, smooth_filter, 'replicate');
 
-mean_filter = fspecial ('average', 25); % Chose 50 as the window size
+mean_filter = fspecial ('average', 17); % Chose 50 as the window size
 imMean = imfilter (image, mean_filter, 'replicate');
 
 image = imMean - image;
