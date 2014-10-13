@@ -3,22 +3,26 @@
 num_per_sample = 6;
 num_imposters = 20;
 skip_diags = 1;
-testing = 3;
-zero_far = 709; % this is what I got from the accuracy graph
+testing = 6;
+%zero_far = 709; % this is what I got from the accuracy graph
 history = [];
 outliers = 0;
 data2 = [];
 
 %% Get data from 600 registered samples and 600 unregistered samples for training and testing
-[genuines, imposters] = get_score_pairs(distances_ulbp_chi, distances_mhd, num_per_sample, num_imposters, skip_diags);
-% [genuines2, imposters2] = get_score_pairs(distances_ulbp_chi, distances_fourier, num_per_sample, num_imposters, skip_diags);
+[genuines, imposters] = get_score_pairs(distances_mhd, distances_hamming, num_per_sample, num_imposters, skip_diags);
+%[genuines2, imposters2] = get_score_pairs(distances_fourier, distances_hamming, num_per_sample, num_imposters, skip_diags);
+% [genuines3, imposters3] = get_score_pairs(distances_ulbp_chi, distances_fourier, num_per_sample, num_imposters, skip_diags);
 %genuines = [genuines genuines2(:,2)];
-% imposters = [imposters imposters2(:,2)];
+%imposters = [imposters imposters2(:,2)];
+% genuines = [genuines genuines3(:,2)];
+% imposters = [imposters imposters3(:,2)];
 
 
-imp_lbp = imp_distances_ulbp_chi';
-imp_mhd = imp_distances_mhd';
-imp_fourier = imp_distances_fourier';
+imp_lbp = imp_distances_mhd';
+imp_mhd = imp_distances_hamming';
+imp_fourier = imp_distances_hamming';
+imp4 = imp_distances_fourier';
 
 test_imposters = zeros(size(imp_lbp,2) ,2);
 
@@ -27,7 +31,8 @@ test_imposters = zeros(size(imp_lbp,2) ,2);
 for i = 1:size(test_imposters,1)
    test_imposters(i,1) = imp_lbp(idx(i),i);
    test_imposters(i,2) = imp_mhd(idx(i),i);
-%    test_imposters(i,3) = imp_fourier(idx(i),i);
+%   test_imposters(i,3) = imp_fourier(idx(i),i);
+%    test_imposters(i,4) = imp4(idx(i),i);
 end
 
 
@@ -57,7 +62,7 @@ for testing = [1:1:6]
 
 
     imposter_data = imposters(imposter_indices,:);
-    imposter_data = imposter_data(imposter_data(:,1) > zero_far, :);
+   % imposter_data = imposter_data(imposter_data(:,1) > zero_far, :);
 
     train_data = [genuines(train_idx, :) ; imposter_data];
     [train_data, mu, sigma] = zscore(train_data);
@@ -65,14 +70,25 @@ for testing = [1:1:6]
     labels = ones(length(train_data), 1);
     labels(length(train_idx)+1:end) = -1;
 
-        c =1; % default parameter
-        gamma = 0.5;
-        w1 = 5;
-        degree = 3;
-        coeff0 = 0;
+       % c =30.2458; % default parameter
+       % c = 1;
+       % gamma = 6.6201;
+       
+        c = 2^-14; w1 = 17; % best for canonical lbp + mhd 
+       %c = 2^-15; w1 = 17; gamma = 2^-6; % best for canonical lbp + mhd + fourier lbp
+       
+%        c = 0.5; w1 = 5; gamma = 2^-1; % samplpe rbf
+%       %  w1 = 5;
+%         degree = 3;
+%         coeff0 = 0;
 
+% RBF
 %    cmd = ['-s 0 -t 2 -b 1 -w-1 1 -w1 ', num2str(w1), ' -g ', num2str(gamma), ' -c ', num2str(c), ' -q'];
-    cmd = ['-s 0 -t 0 -b 1 -w-1 1 -w1 ', num2str(w1),' -c ', num2str(c), ' -q'];
+
+% Linear
+     cmd = ['-s 0 -t 0 -b 1 -w-1 1 -w1 ', num2str(w1),' -c ', num2str(c), ' -q'];
+     
+% Polynomial     
 %    cmd = ['-s 0 -t 1 -b 1 -w-1 1 -w1 ', num2str(w1), ' -g ', num2str(gamma), ' -c ', num2str(c), ' -d ', num2str(degree), ' -r ', num2str(coeff0),' -q'];
     
     svm_model = svmtrain(labels,train_data, cmd);
