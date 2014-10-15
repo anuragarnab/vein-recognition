@@ -25,6 +25,8 @@ far_record = [];
 frr_record = [];
 wrong_rec_record = [];
 
+fprintf('Percent complete: ');
+
 for threshold = threshes
 
     % These four effectively make up the quadrant
@@ -62,9 +64,6 @@ for threshold = threshes
             wrong_recognised(i) = 1;
         end 
 
-%         if (mod(i,100) == 0)
-%            fprintf('%i\n', i); 
-%         end
     end
 
     % Check imposters
@@ -85,9 +84,6 @@ for threshold = threshes
            far(i) = 1;
        end
 
-%        if (mod(i,100) == 0)
-%            fprintf('%i\n', i); 
-%        end
     end
     
     correct_record = [correct_record correct];
@@ -96,8 +92,8 @@ for threshold = threshes
     frr_record = [frr_record frr];
     wrong_rec_record = [wrong_rec_record wrong_recognised];
     
-    save test threshold correct_record correct_neg_record far_record frr_record wrong_rec_record threshes
-    %fprintf('Tested threshold of %d \n', threshold);
+    fprintf('%0.2f %% ', (threshold-threshes(1))/threshes(end) * 100 );
+
     
 end
 
