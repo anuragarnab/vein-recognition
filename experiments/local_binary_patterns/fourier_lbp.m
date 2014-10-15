@@ -1,5 +1,7 @@
 function [ flbp ] = fourier_lbp( histograms )
-%UNTITLED9 Each row is a histogram
+%fourier_lbp Computes fourier LBP features
+% Described in Chapter 6 as well as Appendix A.2
+%Each row is a histogram
 
 flbp = histograms;
 

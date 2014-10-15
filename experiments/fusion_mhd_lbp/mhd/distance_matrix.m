@@ -9,8 +9,8 @@ mhd_fraction = 0.7;
 for row = 1:length(distances_ulbp_emd)
     for col = 1:length(distances_ulbp_emd)
         
-        %distances(row,col) = mhd_fast ( [veins(row).x veins(row).y], [veins(col).x veins(col).y], mhd_fraction);
-        distances_ulbp_emd(row,col) = get_distances( veins(row).ulbp_hist, veins(col).ulbp_hist);
+        distances_f(row,col) = mhd_fast ( [veins(row).x veins(row).y], [veins(col).x veins(col).y], mhd_fraction);
+        %distances_ulbp_emd(row,col) = get_distances( veins(row).ulbp_hist, veins(col).ulbp_hist);
     end
 end
 

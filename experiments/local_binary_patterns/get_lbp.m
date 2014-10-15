@@ -12,7 +12,7 @@ function [ lbp ] = get_lbp( filename, scale, use_extracted_vein )
     if (use_extracted_vein)
         image = get_vein_curvature (image) ; 
     end
-    % Could add some denoising code here
+
     lbp = local_binary_patterns(image);
     lbp = uint8(lbp);
 

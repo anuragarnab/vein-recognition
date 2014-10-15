@@ -25,3 +25,11 @@ experiments/common/linspecer.zip
 experiments/common/libsvm-3.18/
 experiments/common/libsvm-3.18.zip
 experiments/common/ex8ng.zip
+experiments/common/figuremaker/figuremaker/
+experiments/common/plo2svg/
+*.eps
+*.pdf
+*.zip
+*.exe
+*.xps
+report/

@@ -2,19 +2,29 @@ resize_factor = 1;
 rows = 2;
 cols = 16;
 
-for i = 1:length(veins)
-    veins(i).lbp = get_lbp(veins(i).filename, resize_factor);
-    veins(i).ulbp = uniform_lbp(veins(i).lbp);
+for i = 1:length(v1)
+    
+    lbp = local_binary_patterns(v1(i).vein);
+    lbp = uint8(lbp);
+    v1(i).lbp = lbp;
+    
+    %v1(i).lbp = get_lbp(v1(i).filename, resize_factor);
+    v1(i).ulbp = uniform_lbp(v1(i).lbp);
     %veins(i).ulbp_hist = hist (veins(i).ulbp(:), [0:1:58]); % We know uniform lbp has 59 bins
-    veins(i).ulbp_hist = grid_histogram(veins(i).ulbp, rows, cols); 
+    v1(i).ulbp_hist = grid_histogram(v1(i).ulbp, rows, cols); 
 end
 
-for i = 1:length(veins_unreg)
-    veins_unreg(i).lbp = get_lbp(veins_unreg(i).filename, resize_factor);
-    veins_unreg(i).ulbp = uniform_lbp(veins_unreg(i).lbp);
+for i = 1:length(v1_unreg)
+    
+    lbp = local_binary_patterns(v1_unreg(i).vein);
+    lbp = uint8(lbp);
+    v1_unreg(i).lbp = lbp;
+    
+  %  v1_unreg(i).lbp = get_lbp(v1_unreg(i).filename, resize_factor);
+    v1_unreg(i).ulbp = uniform_lbp(v1_unreg(i).lbp);
     %veins_unreg(i).ulbp_hist = hist (veins_unreg(i).ulbp(:), [0:1:58]); % We know uniform lbp has 59 bins
-    veins_unreg(i).ulbp_hist = grid_histogram(veins_unreg(i).ulbp, rows, cols); 
+    v1_unreg(i).ulbp_hist = grid_histogram(v1_unreg(i).ulbp, rows, cols); 
 end
 
-save veins veins
-save veins_unreg veins_unreg
+save veins v1
+save veins_unreg v1_unreg

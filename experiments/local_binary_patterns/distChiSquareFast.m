@@ -1,6 +1,5 @@
 function [ d ] = distChiSquareFast( a1, b1 )
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+%distChiSquareFast Computes the chi-square distance efficiently. Described in Chapter 2
     
     % This snippet handles the case that if a1(j) = b1(j) = 0
     % In this case, the bin-to-bin distance is 0/0 which causes problems

@@ -1,13 +1,17 @@
 function [ mhd ] = mhd_fast( a, b, fraction )
-%UNTITLED6 Summary of this function goes here
-%   a and b must be column vectors
-
-% Pre-compute all the distances first
+%mhd Compute the Modified Hausdorff Distance (MHD) between two matrices,
+%"a" and "b".
+% "a" is an n x d matrix.
+% "b" is a m x d matrix.
+% m and n do not have to be equal, although they can. Each row is a
+% separate point.
+% fraction is the "f" parameter described in Chapter 4.3
 
 if (nargin < 3)
    fraction = 1; 
 end
 
+%% The slow way of computing the distance matrix
 % distance_matrix = zeros ( length (a), length (b) );
 % mhd = 0;
 % 
@@ -19,33 +23,28 @@ end
 %     end
 % end
 
+%% The quicker, vectorised implementation
+% Vectorised way to create distance matrix
+% However, note that we have to hard-code the dimensionality of the vectors
+% into "bsxfun." This does however give a speed-up
 mhd = 0;
 distance_matrix = sqrt(bsxfun(@minus,a(:,1),b(:,1).').^2 + bsxfun(@minus,a(:,2),b(:,2).').^2);
 
-% Now the distance matrix has been filled. Time to find the n smallest
-% entries
-% We can only take one entry from each column
-
+%% The number of points which we consider is f x n where n is the length of the smallest vector
 if ( length (a) < length (b) )
     n = length(a);
 else
     n = length(b);
 end
 
+total = ceil( n * fraction);
+% if (fraction == 1)
+%    total = n; 
+% end
 
-%if ( size(distance_matrix, 1) > size (distance_matrix, 2) )
-%   distance_matrix = distance_matrix'; 
-%end
-
-total = round ( n * fraction);
-if (fraction == 1)
-   total = n-1; 
-end
-
-%[rows cols] = size(distance_matrix);
-%distance_matrix = reshape (distance_matrix, rows * cols, 1);
-
-for j = 1:total+1
+%% Iteratively match the two closest points in the point sets. 
+% Remove their entries from the distance matrix so that they are not matched again
+for j = 1:total
        
    minMatrix = min (distance_matrix(:));
    [row_index, col_index] = find(distance_matrix == minMatrix, 1);
@@ -53,27 +52,10 @@ for j = 1:total+1
    distance_matrix (row_index, :) = Inf;
    distance_matrix (:, col_index) = Inf;
    
- %  fprintf ('Min %0.3f\n',  minMatrix);
    mhd = mhd + minMatrix;
 end
 
-%distance_matrix
-
-% temps = zeros (size(distance_matrix, 1));
-% 
-% for j = 1:size(distance_matrix, 1)
-%     temp = distance_matrix (j, :);
-%     [min_length index] =  min(temp);
-%     temps(j) = min_length;
-%     distance_matrix (:, index) = Inf;
-% end
-% 
-% total = round ( n * fraction);
-% temps = sort (temps, 'ascend');
-% mhd = sum ( temps(1:total) );
-
 mhd = mhd/total;
-
 
 end
 

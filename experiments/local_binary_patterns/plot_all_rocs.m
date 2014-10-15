@@ -1,9 +1,9 @@
-addpath ../../common
+%addpath ../../common
 
 num_outliers = 7;
 num_per_sample = 6;
 limits = 0;
-% datat = [];
+%data=[];
 
 %colours = linspecer(3*7 + 1); % Bit hacky. Length of r x length of c
 %colours = cbrewer('qual', 'Set1', 3*7 + 1);
@@ -14,7 +14,7 @@ count = 1;
 figure
 set(0,'DefaultAxesColorOrder',colours)
 hold all
-thresholds = [0:5:3000];
+thresholds = [0:10:3000];
 
 for r = [1 2 4] % commented 1 out for now
     for c = [1 2 4 8 12 16 32]
@@ -24,9 +24,9 @@ for r = [1 2 4] % commented 1 out for now
             % has not been computed before
             fname = strcat('r',num2str(r),'c',num2str(c));
             load (fname);
-%             [corrects, correct_negs] = tester(distances_ulbp_chi, imp_distances_ulbp_chi, thresholds, limits, num_per_sample);
-            corrects = data(count).corrects;
-            correct_negs = data(count).correct_negs;
+            [corrects, correct_negs] = tester(distances_ulbp_chi, imp_distances_ulbp_chi, thresholds, limits, num_per_sample);
+            %corrects = data(count).corrects;
+            %correct_negs = data(count).correct_negs;
             
             far = size(correct_negs,1) - sum(correct_negs);
             frr = size(corrects,1) - sum(corrects) - num_outliers;
@@ -66,28 +66,28 @@ set(gca, 'YLim', [0 100]);
 
 
 % Now only plot the interesting ones
-good_ones = [13, 12, 19, 6, 11, 18, 20, 7];
-figure
-leg_labels = {};
-c = 1;
-colours = linspecer(length(good_ones)+1);
-
-for i = good_ones  
-    hold on
-    %plot(data(i).far, data(i).frr, 'linewidth', 2, 'color', colours(i,:));
-    plot(data(i).far, data(i).frr, 'linewidth', 2, 'color', colours(c,:));
-    leg_labels{c} = strcat('r= ',num2str(data(i).r),' c= ',num2str(data(i).c));
-    c = c + 1;
-end
-
-ylabel ('False rejection rate')
-xlabel ('False acceptance rate');
-x = [0:0.01:100];
-%plot(x,x,'linewidth',2,'linestyle', '--','color', colours(end,:) );
-plot(x,x,'linewidth',2,'linestyle', '--','color', colours(c,:) );
-leg_labels{c} = 'EER';
-
-legend(leg_labels);
-goodplot();
-set(gca, 'XLim', [0 5]);
-set(gca, 'YLim', [0 5]);
+% good_ones = [13, 12, 19, 6, 11, 18, 20, 7];
+% figure
+% leg_labels = {};
+% c = 1;
+% colours = linspecer(length(good_ones)+1);
+% 
+% for i = good_ones  
+%     hold on
+%     %plot(data(i).far, data(i).frr, 'linewidth', 2, 'color', colours(i,:));
+%     plot(data(i).far, data(i).frr, 'linewidth', 2, 'color', colours(c,:));
+%     leg_labels{c} = strcat('r= ',num2str(data(i).r),' c= ',num2str(data(i).c));
+%     c = c + 1;
+% end
+% 
+% ylabel ('False rejection rate')
+% xlabel ('False acceptance rate');
+% x = [0:0.01:100];
+% %plot(x,x,'linewidth',2,'linestyle', '--','color', colours(end,:) );
+% plot(x,x,'linewidth',2,'linestyle', '--','color', colours(c,:) );
+% leg_labels{c} = 'EER';
+% 
+% legend(leg_labels);
+% goodplot();
+% set(gca, 'XLim', [0 5]);
+% set(gca, 'YLim', [0 5]);

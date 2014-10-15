@@ -8,7 +8,7 @@ correct_neg_record = [];
 far_record = [];
 frr_record = [];
 wrong_rec_record = [];
-threshes = [5:5:100];
+threshes = [5:10:155];
 
 for threshold = threshes
 

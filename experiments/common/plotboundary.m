@@ -32,7 +32,7 @@ colormap bone
 if (size(varargin, 2) == 1) && (varargin{1} == 't')
    [~, f1] = contourf(X,Y, vals, 50, 'LineStyle', 'none');
 end
-[~, f2] = contour(X,Y, vals, [0 0], 'LineWidth', 2, 'Color', 'k');
+[~, f2] = contour(X,Y, vals, [-0.5 -0.5], 'LineWidth', 2, 'Color', 'k');
 
 % Plot the training data on top of the boundary
 pos = find(labels == 1);

@@ -40,8 +40,9 @@ cl(id).cluster = cl(id).cluster(~any(isnan(cl(id).cluster),2),:);
 [vx, vy] = voronoi ( cl(id).cluster(:,1), cl(id).cluster(:,2) );
 hold on
 plot (vx, vy, 'color', colours(3,:), 'linewidth', 2);
-legend({'Bifurcation points','Cluster centroids'}); legendmarkeradjust(10, 2)
+legend({'Bifurcation points','Cluster centroids'}); 
 goodplot();
+legendmarkeradjust(10, 2);
 
 set (gca, 'XLim', [0 320]);
 set (gca, 'YLim', [0 80]);

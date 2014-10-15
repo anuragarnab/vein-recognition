@@ -5,7 +5,7 @@ correct_neg_record = [];
 far_record = [];
 frr_record = [];
 wrong_rec_record = [];
-threshes = [10:50:2010];
+threshes = [0:10:3000];
 
 for threshold = threshes
 

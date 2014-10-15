@@ -1,7 +1,7 @@
 eers_all = [];
 
-for i = 1:length(history_ulbpMhdRad)
-     eers_all = [eers_all; [history_ulbpMhdRad(i).eers] ];
+for i = 1:length(history)
+     eers_all = [eers_all; [history(i).eers] ];
 end
 
 [eers_best idx] = sortrows(eers_all, 3);

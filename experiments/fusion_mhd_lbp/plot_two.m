@@ -9,7 +9,9 @@
 num_per_sample = 6;
 num_imposters = 1;
 skip_diags = 1;
-[genuines, imposters] = get_score_pairs(distances, distances_ulbp_chi, num_per_sample, num_imposters, skip_diags);
+[genuines, imposters] = get_score_pairs(distances_ulbp_chi, distances_mhd, num_per_sample, num_imposters, skip_diags);
+
+genuines(outliers, :) = NaN;
 
 figure
 scatter (genuines(:,1), genuines(:,2), 'rx');

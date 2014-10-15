@@ -1,6 +1,6 @@
 function [  ] = plot_pdf( a, b, binsA, binsB, ptitle, pxlabel, pylabel, plegend )
-%UNTITLED4 Summary of this function goes here
-%   Detailed explanation goes here
+%plot_pdf Plots the histogram and approximates the pdf
+% The real heavy lifting is done by distribution_tester
     
     if (nargin < 5)
         ptitle = '';
@@ -33,7 +33,7 @@ function [  ] = plot_pdf( a, b, binsA, binsB, ptitle, pxlabel, pylabel, plegend 
     figure
     bar (centersA, numA, 'red');
     hold on
-    bar (centersB, numB, 'blue');
+    bar (centersB, numB, 'blue', 'hist');
     
     centersA = [min(centersA)-eps centersA max(centersA)+eps];
     numA = [0 numA 0];
@@ -49,10 +49,11 @@ function [  ] = plot_pdf( a, b, binsA, binsB, ptitle, pxlabel, pylabel, plegend 
     title(ptitle);
     legend(plegend, 'Location', 'SouthEast');
     
-    disp('Remember to label the graph!');
+    %disp('Remember to label the graph!');
 
 end
 
+% Area of histogram
 function [area] = get_area (x, y)
     bin_width = x(2) - x(1);
     area = sum ( y.*bin_width);

@@ -3,13 +3,18 @@
 
 %% Compute the distances
 
-distances_ulbp_emd = zeros(length(veins)); % make a square matrix
+%distances_ulbp_chi = zeros(length(veins)); % make a square matrix
+%distances_flbp = zeros(length(veins));
+distances_hamming = zeros(length(veins));
 
-for row = 1:length(distances_ulbp_emd)
-    for col = 1:length(distances_ulbp_emd)
+for row = 1:length(distances_ulbp_chi)
+    for col = 1:length(distances_ulbp_chi)
         
         %distances(row,col) = mhd_fast ( [veins(row).x veins(row).y], [veins(col).x veins(col).y], mhd_fraction);
-        distances_ulbp_emd(row,col) = get_distances( veins(row), veins(col));
+        %distances_ulbp_chi(row,col) = get_distances( veins(row), veins(col));
+        distances_hamming(row,col) = bitwise_hamming(veins(row).lbp(:), veins(col).lbp(:));
+        
+        %distances_flbp(row,col) = euclid_rows( v1(row).flbp, v1(col).flbp);
     end
 end
 

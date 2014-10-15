@@ -4,7 +4,7 @@ eers = [];
 %svms = history_poly(479).svms;
 %svms = history_ulbpMhdRad(343).svms;
 %svms = history(10).svms;
-svms = history(1).svms;
+%svms = history(51).svms;
 
 for chosen = [1]
 

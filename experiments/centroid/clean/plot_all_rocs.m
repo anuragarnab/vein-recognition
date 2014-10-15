@@ -2,9 +2,11 @@
 
 outliers = 13;
 
-clus_nums = [23:25];
-%clus_nums = [1:1:4]; 
-clus_nums = [clus_nums 30:1:34];
+% clus_nums = [23:25];
+clus_nums = [11:1:20]; 
+%clus_nums = [clus_nums 30:1:34];
+
+
 % clus_nums = [1:1:length(history)];
 count = 1;
 
@@ -55,8 +57,8 @@ end
 
 
 goodplot();
-set(gca, 'XLim', [1 20]);
-set(gca, 'YLim', [4 22]);
+%set(gca, 'XLim', [1 20]);
+%set(gca, 'YLim', [4 22]);
 
 
 % rmpath ../../common

@@ -2,8 +2,8 @@
 % It is unlikely that it is going that the thresholds of mhd = 5 and ulbp
 % = 1000 will be improved upon
 
-mhd_threshes = [0.1 : 0.1 : 6];
-lbp_threshes = [500 : 10 : 1200];
+mhd_threshes = [0.1 : 0.1 : 11];
+lbp_threshes = [400 : 10 : 2500];
 corrects = zeros (length(lbp_threshes), length(mhd_threshes) );
 correct_negs = zeros (length(lbp_threshes), length(mhd_threshes) );
 
@@ -19,3 +19,4 @@ for i = 1:length(lbp_threshes)
 end
 
 total = corrects + correct_negs;
+max(max(total))

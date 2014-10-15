@@ -1,5 +1,5 @@
 function [ lbp ] = local_binary_patterns( image )
-%UNTITLED2 Do the default 3x3 lbp for now
+%local_binary_patterns Computes LBP_8_1 (Canonical LBP) as described in Chapter 6 and 2
 
 %following the same order as the previous one
 cols = [-1 -1 0 1 1  1 0 -1];

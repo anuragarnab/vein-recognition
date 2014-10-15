@@ -1,6 +1,12 @@
 function [ correct_record, correct_neg_record, far_record, frr_record, wrong_rec_record ] = tester( distance_matrix, imp_distance_matrix, threshes, limits, samples_per_person)
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+%UNTITLED2 tests the score matrix to determine correct genuine acceptances
+%and correct imposter rejects/
+% Correct record: Stores the correct acceptances for each threshold
+% Correct_neg record: Stores the correct imposter rejections for each threshold
+% far_record: Stores the false acceptances for each threshold
+% frr_record: Stores the false rejections for each threshold
+% wrong_rec_record: Stores the indices of the subjects identified as the
+%   wrong person
 
 ix = 2;
 
@@ -24,6 +30,8 @@ far_record = [];
 frr_record = [];
 wrong_rec_record = [];
 %threshes = [0:10:3000];
+
+fprintf('Progress: ')
 
 for threshold = threshes
 
@@ -95,8 +103,9 @@ for threshold = threshes
     frr_record = [frr_record frr];
     wrong_rec_record = [wrong_rec_record wrong_recognised];
     
-    save test threshold correct_record correct_neg_record far_record frr_record wrong_rec_record threshes
-    fprintf('%d \n', threshold);
+    %save test threshold correct_record correct_neg_record far_record frr_record wrong_rec_record threshes
+    %fprintf('%d \n', threshold);
+    fprintf('%0.2f %% ', (threshold-threshes(1))/threshes(end) * 100);
     
 end
 

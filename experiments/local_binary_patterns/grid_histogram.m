@@ -1,9 +1,17 @@
 function [ histograms ] = grid_histogram( image, r, c, verbose, histogram_range )
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+%grid_histogram "image" is an image of ULBP features
+%   Subdivides an image into smaller grids
+%   Histograms of Uniform LBP features are then computed and then concatenated together
+%   This was described in Chapter 6
+
+% The "verbose" option plots the histogram that were computed
+% The histogram range is 0-58 by default (range of 8 bit uniform local binary patterns)
+
     [height, width] = size(image);
     histograms = [];
-    blue = [79 129 189]./255;
+    
+    colours = linspecer(2);
+    blue = colours(1,:);
     
     if (nargin < 5)
        histogram_range = [0:1:58];
@@ -31,25 +39,18 @@ function [ histograms ] = grid_histogram( image, r, c, verbose, histogram_range 
     for ir = 1:size(rows,1)
        for ic = 1:size(cols,1)
           im = image(rows(ir,1):rows(ir,2) , cols(ic,1):cols(ic,2) );
-          %subplot(r,c,count);
-          %imshow(im);
           h = hist(im(:),histogram_range);
-          
-          %%Fourier test
-          %h = abs(fft(h));
-          %%
-          
+                   
           histograms = [histograms ; h];
-          %count = count+1;
           
           if (verbose)
               subplot(r,c,count);
               bar(h);
               xlabel('Uniform LBP Codeword');
               ylabel('Frequency');
-              set (gca, 'YLim', [0 250]);
-              set (findobj(gca,'Type','patch'), 'FaceColor', blue)
-              imshow(im);
+              set (gca, 'YScale', 'log');
+              set (findobj(gca,'Type','patch'), 'FaceColor', blue);
+              goodplot();
               count = count + 1;
           end
        end

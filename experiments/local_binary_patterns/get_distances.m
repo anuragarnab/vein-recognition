@@ -13,6 +13,8 @@ function [ distances ] = get_distances( vein, veins, index_to_exclude )
        %if (mod(i,100) == 0)
        %   fprintf('%d\n', i); 
        %end
+       
+       %distances(i) = euclid_rows (vein.ulbp_hist, veins(i).ulbp_hist); 
     end
     
     if (index_to_exclude > 0)

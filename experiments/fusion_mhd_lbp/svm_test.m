@@ -3,7 +3,7 @@
 % gets the lbp distances. Then it puts it in the svm 
 
 num_test = 600;
-test_indices = 10; 
+test_indices = 15; 
 samples_per_person = 6;
 
 correct = zeros(length(num_test), 1);
@@ -22,7 +22,7 @@ for i = 1:num_test
 %       end
 %    end
 
-    out = svmclassify(svmStruct, [distances_mhd(testing,i) , distances_ulbp_emd(testing,i)]);
+    out = svmclassify(svmStruct_chi, [distances_mhd(testing,i), distances_ulbp_chi(testing,i)]);
     accepted = testing (logical(out));
     ids = ceil (accepted ./ samples_per_person);
     identified = mode (ids);
