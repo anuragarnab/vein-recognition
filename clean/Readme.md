@@ -16,6 +16,7 @@ Directory structure
 The exact structure of this directory is as follows
 
 common/					Contains scripts used by a variety of functions. Ensure that this directory is in your MATLAB path when running
+
 experimental_data/		Contains the training database and score matrices which were created when testing. The demoes load data from here to speed up the demonstration (It generally takes about 15 minutes to initially load the database, and then another 15 or so minutes to train each classifier)
 
 mhd_classifier			Contains relevant code for the MHD Classifier. Run "demo.m" for a quick overview. Run "demo_extended" to populate the training database as opposed to reading the database in the "experiemental_data" folder. 
